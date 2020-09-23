@@ -1,13 +1,15 @@
 Package: delayedflow
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Delayed flow separation to estimate multiple delayed streamflow contributions.
+Version: 0.1
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Michael",
+           family = "Stoelzle",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "michael.stoelzle@hydro.uni-freiburg.de",
+           comment = c(ORCID = "0000-0003-0021-4351"))
+Description: Delayed flow separation (DFS) is an extentions of baseflow separation where 
+    hydrographs are separated in quick- and baseflow. DFS deconvolute the hydrograph
+    into multiple delayed streamflow contributions.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to
     pick a license
 Encoding: UTF-8
