@@ -1,5 +1,3 @@
-#' delayedflow data
-#'
 #' Example data
 #'
 #' @format vector

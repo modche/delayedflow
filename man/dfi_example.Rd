@@ -3,7 +3,7 @@
 \docType{data}
 \name{dfi_example}
 \alias{dfi_example}
-\title{delayedflow data}
+\title{Example data}
 \format{
 vector
 \describe{

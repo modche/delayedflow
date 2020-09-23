@@ -1,7 +1,7 @@
 # delayedflow
 Delayed flow separation to estimate multiple delayed streamflow contributions
 
-```{r}
+```{R}
 # ----- use package in R  -----
 #install.packages("devtools")
 devtools::install_github("modche/delayedflow")
