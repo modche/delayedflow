@@ -5,16 +5,12 @@
 \alias{dfi_example}
 \title{Example data}
 \format{
-vector
-\describe{
-\item{x}{dfi, 121 values, 1-0}
-...
-}
+vector data
 }
 \usage{
 dfi_example
 }
 \description{
-Example data
+Example of DFI values. This is dummy data.
 }
 \keyword{datasets}

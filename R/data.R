@@ -1,9 +1,7 @@
 #' Example data
 #'
-#' @format vector
-#' \describe{
-#'   \item{x}{dfi, 121 values, 1-0}
-#'   ...
-#' }
-#' @example
+#' @description Example of DFI values. This is dummy data.
+#'
+#' @format vector data
+#'
 "dfi_example"

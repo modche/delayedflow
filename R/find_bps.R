@@ -1,13 +1,17 @@
 #' Find breakpoints in DFI curve
 #'
-#' @param dfi numeric, DFI values between 1 and 0
-#' @param n_bp numeric, number of breakpoints
-#' @param min_gp_gap numeric, smallest interval between two breakpoints
+#' @description Estimates n breakpoints in the DFI curve.
+#'     DFI values are compared against n+1 piecewise linear segments and the minimization of the
+#'     corresponding residuals. Several parameters can be tweaked.
+#'
+#' @param dfi numeric, a vector with the DFI values between 1 and 0, dummy data [dfi_example] can be used.
+#' @param n_bp numeric, How many breakpoints (1, 2, 3) should be estimated? Default = 2
+#' @param min_gp_gap numeric, smallest interval between two breakpoints. Default = 5 (days)
 #' @param filter_min numeric, `filter_min`+1 is minimum potential breakpoint estimate
 #' @param filter_max numeric, `filter_max`-1 is maximum potential breakpoint estimate
-#' @param dfi_check logical, if `TRUE` DFI values are converted to be continuously descreasing with cummin()
-#' @param print logical, if `TRUE` calculation of breakpoints are printed
-#' @param plotting logical, if `TRUE` the DFI curve and piecewise linear segments are plotted
+#' @param dfi_check logical, if `TRUE` DFI values are converted to be monotonically descreasing with [cummin()]
+#' @param print logical, if `TRUE` best breakpoint estimates during calculation are printed (debug mode)
+#' @param plotting logical, if `TRUE` the DFI curve and piecewise linear segments are plotted with \code{plot()}
 #'
 #' @return Returns a list.
 #' \item{breakpoints}{estimates for the n breakpoints with names `bp_x`}
@@ -20,10 +24,10 @@
 #' # use dfi_example as an DFI vector with 121 values
 #' find_bp(dfi_example, n_bp = 2, filter_max = 90, dfi_check = FALSE)
 find_bp <- function(dfi,
-					n_bp = 3,
+					n_bp = 2,
 					min_gp_gap = 5,
 					filter_min = 0,
-					filter_max = 120,
+					filter_max = length(dfi) - 1,
 					dfi_check = TRUE,
 					print = FALSE,
 					plotting = FALSE) {
@@ -94,16 +98,17 @@ find_bp <- function(dfi,
 result$rel_contr <- -diff(c(dfi[c(1, result$breakpoints+1)], 0))
 
 if (plotting){
-	plot(0:120, dfi,
+	plot(0:(len-1), dfi,
 		 type = "l",
 		 col = "blue",
 		 ylim = c(0,1),
 		 ylab = "DFI",
 		 xlab = "Filter width N")
-	points(0:120, best_fit, type = "l", col = "red")
+	points(0:(len-1), best_fit, type = "l", col = "red")
 	abline(v=result$breakpoints)
 }
 
 
 return(result)
 }
+

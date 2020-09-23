@@ -6,31 +6,31 @@
 \usage{
 find_bp(
   dfi,
-  n_bp = 3,
+  n_bp = 2,
   min_gp_gap = 5,
   filter_min = 0,
-  filter_max = 120,
+  filter_max = length(dfi) - 1,
   dfi_check = TRUE,
   print = FALSE,
   plotting = FALSE
 )
 }
 \arguments{
-\item{dfi}{numeric, DFI values between 1 and 0}
+\item{dfi}{numeric, a vector with the DFI values between 1 and 0, dummy data \link{dfi_example} can be used.}
 
-\item{n_bp}{numeric, number of breakpoints}
+\item{n_bp}{numeric, How many breakpoints (1, 2, 3) should be estimated? Default = 2}
 
-\item{min_gp_gap}{numeric, smallest interval between two breakpoints}
+\item{min_gp_gap}{numeric, smallest interval between two breakpoints. Default = 5 (days)}
 
 \item{filter_min}{numeric, \code{filter_min}+1 is minimum potential breakpoint estimate}
 
 \item{filter_max}{numeric, \code{filter_max}-1 is maximum potential breakpoint estimate}
 
-\item{dfi_check}{logical, if \code{TRUE} DFI values are converted to be continuously descreasing with cummin()}
+\item{dfi_check}{logical, if \code{TRUE} DFI values are converted to be monotonically descreasing with \code{\link[=cummin]{cummin()}}}
 
-\item{print}{logical, if \code{TRUE} calculation of breakpoints are printed}
+\item{print}{logical, if \code{TRUE} best breakpoint estimates during calculation are printed (debug mode)}
 
-\item{plotting}{logical, if \code{TRUE} the DFI curve and piecewise linear segments are plotted}
+\item{plotting}{logical, if \code{TRUE} the DFI curve and piecewise linear segments are plotted with \code{plot()}}
 }
 \value{
 Returns a list.
@@ -40,7 +40,9 @@ Returns a list.
 e.g. 2 breakpoints lead to 3 relative contributions, 3 breakpoints lead to 4 relative contributions}
 }
 \description{
-Find breakpoints in DFI curve
+Estimates n breakpoints in the DFI curve.
+DFI values are compared against n+1 piecewise linear segments and the minimization of the
+corresponding residuals. Several parameters can be tweaked.
 }
 \examples{
 # use dfi_example as an DFI vector with 121 values
