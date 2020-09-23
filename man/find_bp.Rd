@@ -22,21 +22,22 @@ find_bp(
 
 \item{min_gp_gap}{numeric, smallest interval between two breakpoints}
 
-\item{filter_min}{numeric, filter_max+1 is minimum potential breakpoint estimate}
+\item{filter_min}{numeric, \code{filter_min}+1 is minimum potential breakpoint estimate}
 
-\item{filter_max}{numeric, filter_max-1 is maximum potential breakpoint estimate}
+\item{filter_max}{numeric, \code{filter_max}-1 is maximum potential breakpoint estimate}
 
-\item{dfi_check}{logical, if TRUE DFI values are converted to be continuously descreasing with cummin()}
+\item{dfi_check}{logical, if \code{TRUE} DFI values are converted to be continuously descreasing with cummin()}
 
-\item{print}{logical, if TRUE calculation of breakpoints are printed}
+\item{print}{logical, if \code{TRUE} calculation of breakpoints are printed}
 
-\item{plotting}{logical, if TRUE the DFI curve and piecewise linear segments are plotted}
+\item{plotting}{logical, if \code{TRUE} the DFI curve and piecewise linear segments are plotted}
 }
 \value{
 Returns a list.
-\item{breakpoints}{estimates for the n breakpoints with names "bp_x"}
-\item{bias}{value of the objective function OF = 1/2 RMSE + 1/2 MAE"}
-\item{rel_contr}{Relative streamflow contributions between \code{filter_min}, the breakpoints and \code{filter_max}}
+\item{breakpoints}{estimates for the n breakpoints with names \code{bp_x}}
+\item{bias}{value of the objective function \verb{OF = 1/2 RMSE + 1/2 MAE}}
+\item{rel_contr}{Relative streamflow contributions between \code{filter_min}, the breakpoints and \code{filter_max},
+e.g. 2 breakpoints lead to 3 relative contributions, 3 breakpoints lead to 4 relative contributions}
 }
 \description{
 Find breakpoints in DFI curve
@@ -44,4 +45,7 @@ Find breakpoints in DFI curve
 \examples{
 # use dfi_example as an DFI vector with 121 values
 find_bp(dfi_example, n_bp = 2, filter_max = 90, dfi_check = FALSE)
+}
+\references{
+Stoelzle, M., Schuetz, T., Weiler, M., Stahl, K., & Tallaksen, L. M. (2020). Beyond binary baseflow separation: a delayed-flow index for multiple streamflow contributions. Hydrology and Earth System Sciences, 24(2), 849-867.
 }
