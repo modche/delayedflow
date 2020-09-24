@@ -10,6 +10,7 @@ find_bp(
   min_gp_gap = 5,
   filter_min = 0,
   filter_max = length(dfi) - 1,
+  of_weights = c(0.5, 0.5),
   dfi_check = TRUE,
   print = FALSE,
   plotting = FALSE
@@ -26,6 +27,11 @@ find_bp(
 
 \item{filter_max}{numeric, \code{filter_max}-1 is maximum potential breakpoint estimate}
 
+\item{of_weights}{vector with two elements, first is weight of the RMSE, second is weight of the MAE.
+Default is c(0.5, 0.5), i.e. equal weights. Sum of vector must be 1. To switch of one measure use
+\code{c(1, 0)} or \code{c(0,1)}. With the weighting more or less focus could be given to the upper parts
+of the DFI curve (i.e. when block length \code{n} for separation is between 1 and 10).}
+
 \item{dfi_check}{logical, if \code{TRUE} DFI values are converted to be monotonically descreasing with \code{\link[=cummin]{cummin()}}}
 
 \item{print}{logical, if \code{TRUE} best breakpoint estimates during calculation are printed (debug mode)}
@@ -35,18 +41,26 @@ find_bp(
 \value{
 Returns a list.
 \item{breakpoints}{estimates for the n breakpoints with names \code{bp_x}}
-\item{bias}{value of the objective function \verb{OF = 1/2 RMSE + 1/2 MAE}}
+\item{bias}{value of the objective function
+\verb{OF = 1/2 RMSE + 1/2 MAE},
+where OF is to be minimized.}
 \item{rel_contr}{Relative streamflow contributions between \code{filter_min}, the breakpoints and \code{filter_max},
-e.g. 2 breakpoints lead to 3 relative contributions, 3 breakpoints lead to 4 relative contributions}
+e.g. 2 breakpoints lead to 3 relative contributions, 3 breakpoints lead to 4 relative contributions.
+The first \code{rel_contr}-avlue is the fastest contribution to streamflow, the last \code{rel_contr}-value
+is the slowest contribution to streamflow.}
 }
 \description{
 Estimates n breakpoints in the DFI curve.
 DFI values are compared against n+1 piecewise linear segments and the minimization of the
-corresponding residuals. Several parameters can be tweaked.
+corresponding residuals. Several parameters can be customized.
+If \code{q_obs} is given in daily temporal resolution then also \code{n} can be interpreted as delay in days
+for different contributions (default).
 }
 \examples{
 # use dfi_example as an DFI vector with 121 values
 find_bp(dfi_example, n_bp = 2, filter_max = 90, dfi_check = FALSE)
+
+find_bp(runif(100), plotting = TRUE) # dummy code
 }
 \references{
 Stoelzle, M., Schuetz, T., Weiler, M., Stahl, K., & Tallaksen, L. M. (2020). Beyond binary baseflow separation: a delayed-flow index for multiple streamflow contributions. Hydrology and Earth System Sciences, 24(2), 849-867.

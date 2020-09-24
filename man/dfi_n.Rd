@@ -2,23 +2,42 @@
 % Please edit documentation in R/dfi_n.R
 \name{dfi_n}
 \alias{dfi_n}
-\title{Calculation of DFI for block length of N}
+\title{Calculation of DFI for block length of n}
 \usage{
-dfi_n(q, n = 5)
+dfi_n(q, n = 5, add_zero = TRUE)
 }
 \arguments{
-\item{q}{streamflow series}
+\item{q}{vector with streamflow series}
 
-\item{n}{block length}
+\item{n}{block length \code{n}. If \code{n} is a integer (vector of length one) a single
+delayed flow separation is performed. If \code{n} is a vector (with length > 1)
+multiple separations for all \code{n} values are calculated. To analyze later on the
+DFI curve it is recommended that \code{n} starts at 1 and is a continuous vector (e.g. 1,2,3,.... 58, 59, 60).
+But also variations like \code{n = c(1,5,10,15,30)} are possible.}
 
-\item{...}{other parameters passed to function}
+\item{add_zero}{logical, default is \code{TRUE}. If \code{TRUE}, \code{n=0} and \code{dfi=1} is added to
+output data.frame. Note that the \code{DFI} of a separation with \code{n=0} is by definition \code{DFI = 1}.}
 }
 \value{
-
+A data.frame with two columns: \code{n} for block length and \code{dfi} with the \code{DFI(n)} values.
+If \code{n} is a single integer the function returns a single integer (i.e. one \code{DFI(n)} value).
 }
 \description{
-Calculation of DFI for block length of N
+Common baseflow separation separates quick- and baseflow with a
+block length of n = 5 with \code{baseflow(q_obs, n = 5)}. To generate multiple separations
+for the DFI index \code{n} vary between 1 and \code{n_max} (e.g. 60, 90 or 120 days). To do this the
+function could be used with a \code{n} as a vector instead of a single integer (e.g. \code{baseflow(q_obs, n = 1:60)})
+Note, separation with \code{n=0} is not possible. The DFI of \code{n=1} is not 1 as due to the algorithm some
+streamflow peaks are separated from delayed flow.
 }
 \examples{
-dfi_n(q_obs, n = 2:5)
+# same as BFI calculation
+dfi_n(q_obs, n = 5)
+
+# 10 different separations based on various block length n
+dfi_n(q_obs, n = 1:10)
+
+# only specific block lengths are used
+dfi_n(q_obs, n = c(1,5,10,30,60,90), add_zero = FALSE)
+
 }
