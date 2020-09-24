@@ -11,6 +11,14 @@ vector data
 dfi_example
 }
 \description{
-Example of DFI values. This is dummy data.
+Example of DFI values. This is dummy data. A vector with 121 \code{DFI}-values between 1 and 0.
+The index is decreasing monotonously with larger n.
+This can be used for testing the \link{find_bp} function.
+}
+\examples{
+data(dfi_example)
+dfi_example
+
+find_bp(dfi = dfi_example, n_bp = 1, plotting = TRUE)
 }
 \keyword{datasets}

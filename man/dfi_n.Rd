@@ -2,7 +2,7 @@
 % Please edit documentation in R/dfi_n.R
 \name{dfi_n}
 \alias{dfi_n}
-\title{Calculation of DFI for block length of n}
+\title{Calculation of DFI (or BFI) with block length n or 1:n}
 \usage{
 dfi_n(q, n = 5, add_zero = TRUE)
 }

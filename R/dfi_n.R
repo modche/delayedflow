@@ -1,4 +1,4 @@
-#' Calculation of DFI for block length of n
+#' Calculation of DFI (or BFI) with block length n or 1:n
 #'
 #' @description Common baseflow separation separates quick- and baseflow with a
 #'   block length of n = 5 with \code{baseflow(q_obs, n = 5)}. To generate multiple separations

@@ -2,7 +2,7 @@
 % Please edit documentation in R/which_min_na.R
 \name{which.min.na}
 \alias{which.min.na}
-\title{Helper Function}
+\title{Helper Function for which.min(x)}
 \usage{
 which.min.na(x)
 }
@@ -16,5 +16,5 @@ Position of minimum value in the vector
 Calculation of minimum position in a vector with NA values.
 }
 \examples{
-which.min.na(c(2,3,4,1,NA,6))
+which.min.na(c(2,3,4,1,NA,6)) # returns 4
 }
