@@ -21,5 +21,6 @@ Original \code{baseflow} function from the \code{lfstat} package.
 }
 \examples{
 \dontrun{
+baseflow(q_data$q_obs, block.len = 10)
 }
 }

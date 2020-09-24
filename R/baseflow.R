@@ -11,7 +11,7 @@
 #'
 #' @examples
 #'\dontrun{
-#’baseflow(q_data$q_obs, block.len = 10)
+#'baseflow(q_data$q_obs, block.len = 10)
 #'}
 baseflow <- function (x, tp.factor = 0.9, block.len = 5)
 {
