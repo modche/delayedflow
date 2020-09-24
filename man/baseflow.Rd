@@ -20,5 +20,6 @@ Baseflow series.
 Original \code{baseflow} function from the \code{lfstat} package.
 }
 \examples{
-baseflow(q_data$q_obs, block.len = 10)
+\dontrun{
+}
 }

@@ -58,9 +58,7 @@ for different contributions (default).
 }
 \examples{
 # use dfi_example as an DFI vector with 121 values
-find_bp(dfi_example, n_bp = 2, filter_max = 90, dfi_check = FALSE)
-
-find_bp(runif(100), plotting = TRUE) # dummy code
+find_bp(dfi_example, n_bp = 3, filter_max = 90, plotting = TRUE)
 }
 \references{
 Stoelzle, M., Schuetz, T., Weiler, M., Stahl, K., & Tallaksen, L. M. (2020). Beyond binary baseflow separation: a delayed-flow index for multiple streamflow contributions. Hydrology and Earth System Sciences, 24(2), 849-867.

@@ -199,35 +199,20 @@ is the slowest contribution to streamflow.</p></dd>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># use dfi_example as an DFI vector with 121 values</span>
-<span class='fu'>find_bp</span>(<span class='kw'>dfi_example</span>, n_bp = <span class='fl'>2</span>, filter_max = <span class='fl'>90</span>, dfi_check = <span class='fl'>FALSE</span>)
-</div><div class='output co'>#&gt; Calculating breakpoints . . . 
-#&gt;  0%  25 %  50 %  75 %  100 %  
-#&gt; Breakpoints ready . . . 
-#&gt; 
-#&gt; </div><div class='output co'>#&gt; $breakpoints
-#&gt; bp_1 bp_2 
-#&gt;    8   60 
-#&gt; 
-#&gt; $bias
-#&gt; [1] 0.02465472
-#&gt; 
-#&gt; $rel_contr
-#&gt; [1] 0.4590561 0.3518302 0.1891137
-#&gt; </div><div class='input'>
-<span class='fu'>find_bp</span>(<span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span>(<span class='fl'>100</span>), plotting = <span class='fl'>TRUE</span>) <span class='co'># dummy code</span>
+<span class='fu'>find_bp</span>(<span class='kw'>dfi_example</span>, n_bp = <span class='fl'>3</span>, filter_max = <span class='fl'>90</span>, plotting = <span class='fl'>TRUE</span>)
 </div><div class='output co'>#&gt; Calculating breakpoints . . . 
 #&gt;  0%  25 %  50 %  75 %  100 %  
 #&gt; Breakpoints ready . . . 
 #&gt; 
 #&gt; </div><div class='img'><img src='find_bp-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $breakpoints
-#&gt; bp_1 bp_2 
-#&gt;    1    6 
+#&gt; bp_1 bp_2 bp_3 
+#&gt;    4   18   60 
 #&gt; 
 #&gt; $bias
-#&gt; [1] 0.002759657
+#&gt; [1] 0.01066672
 #&gt; 
 #&gt; $rel_contr
-#&gt; [1] 0.000000000 0.073350696 0.007399441
+#&gt; [1] 0.3638711 0.2101886 0.2368266 0.1891137
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
