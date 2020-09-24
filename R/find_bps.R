@@ -32,9 +32,7 @@
 #' @export
 #' @examples
 #' # use dfi_example as an DFI vector with 121 values
-#' find_bp(dfi_example, n_bp = 2, filter_max = 90, dfi_check = FALSE)
-#'
-#' find_bp(runif(100), plotting = TRUE) # dummy code
+#' find_bp(dfi_example, n_bp = 3, filter_max = 90, plotting = TRUE)
 find_bp <- function(dfi,
 					n_bp = 2,
 					min_gp_gap = 5,
