@@ -10,13 +10,14 @@ Authors@R:
 Description: Delayed flow separation (DFS) is an extentions of baseflow separation where 
     hydrographs are separated in quick- and baseflow. DFS deconvolute the hydrograph
     into multiple delayed streamflow contributions.
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+License: MIT
 Encoding: UTF-8
 LazyData: true
+URL: https://github.com/modche/delayedflow
+BugReports: https://github.com/modche/delayedflow/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Depends: 
-    R (>= 2.10)
+    R (>= 3.1.0)
 Suggests:
     pkgdown

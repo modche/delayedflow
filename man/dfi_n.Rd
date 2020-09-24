@@ -32,12 +32,12 @@ streamflow peaks are separated from delayed flow.
 }
 \examples{
 # same as BFI calculation
-dfi_n(q_obs, n = 5)
+dfi_n(q_data$q_obs, n = 5)
 
 # 10 different separations based on various block length n
-dfi_n(q_obs, n = 1:10)
+dfi_n(q_data$q_obs, n = 1:10)
 
 # only specific block lengths are used
-dfi_n(q_obs, n = c(1,5,10,30,60,90), add_zero = FALSE)
+dfi_n(q_data$q_obs, n = c(1,5,10,30,60,90), add_zero = FALSE)
 
 }
