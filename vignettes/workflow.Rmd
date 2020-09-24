@@ -1,0 +1,54 @@
+---
+title: "Workflow with delayflow package"
+author: "Michael Stölzle"
+date: "9/24/2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(delayedflow)
+q_obs <- q_data$q_obs
+```
+
+
+Now see how the DFI curve looks like:
+
+```{r}
+cdc <- dfi_n(q = q_obs, n = 1:120)
+
+head(cdc)
+tail(cdc)
+
+plot(x = 0:120, y = cdc$dfi, 
+	 type = "o", ylim = c(0,1),
+	 ylab ="DFI", xlab = "Block length N (days)",
+	 main = "Characteristic Delay Curve (CDC)")
+```
+
+
+## Finding breakpoints
+
+```{r}
+bps <- find_bp(dfi = cdc$dfi, 
+			   n_bp = 3,
+			   plotting = TRUE)
+```
+
+Looking at:
+
+ - the breakpoint estimates, here 4, 20 and 65 days
+ - output of the objective function
+ - relative streamflow contributions between `filter_min`, the breakpoint(s) and `filter_max.`
+
+```{r}
+bps$breakpoints
+bps$bias
+bps$rel_contr
+```
+
