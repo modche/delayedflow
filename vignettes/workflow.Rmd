@@ -1,7 +1,5 @@
 ---
 title: "Workflow with delayflow package"
-author: "Michael Stölzle"
-date: "9/24/2020"
 output: html_document
 editor_options: 
   chunk_output_type: console
@@ -11,11 +9,14 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Load package and data
+
 ```{r}
 library(delayedflow)
 q_obs <- q_data$q_obs
 ```
 
+# Create CDCs from DFI
 
 Now see how the DFI curve looks like:
 
@@ -32,7 +33,7 @@ plot(x = 0:120, y = cdc$dfi,
 ```
 
 
-## Finding breakpoints
+# Finding breakpoints
 
 ```{r}
 bps <- find_bp(dfi = cdc$dfi, 

@@ -83,9 +83,7 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Workflow with delayflow package</h1>
-                        <h4 class="author">Michael Stölzle</h4>
             
-            <h4 class="date">9/24/2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/modche/delayedflow/blob/master/vignettes/workflow.Rmd"><code>vignettes/workflow.Rmd</code></a></small>
       <div class="hidden name"><code>workflow.Rmd</code></div>
@@ -94,10 +92,17 @@
 
     
     
+<div id="load-package-and-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#load-package-and-data" class="anchor"></a>Load package and data</h1>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/modche/delayedflow">delayedflow</a></span>)
 <span class="kw">q_obs</span> <span class="op">&lt;-</span> <span class="kw">q_data</span><span class="op">$</span><span class="kw">q_obs</span>
 </pre></div>
+</div>
+<div id="create-cdcs-from-dfi" class="section level1">
+<h1 class="hasAnchor">
+<a href="#create-cdcs-from-dfi" class="anchor"></a>Create CDCs from DFI</h1>
 <p>Now see how the DFI curve looks like:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="kw">cdc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dfi_n.html">dfi_n</a></span>(q = <span class="kw">q_obs</span>, n = <span class="fl">1</span><span class="op">:</span><span class="fl">120</span>)
@@ -128,9 +133,10 @@
      main = <span class="st">"Characteristic Delay Curve (CDC)"</span>)
 </pre></div>
 <p><img src="workflow_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<div id="finding-breakpoints" class="section level2">
-<h2 class="hasAnchor">
-<a href="#finding-breakpoints" class="anchor"></a>Finding breakpoints</h2>
+</div>
+<div id="finding-breakpoints" class="section level1">
+<h1 class="hasAnchor">
+<a href="#finding-breakpoints" class="anchor"></a>Finding breakpoints</h1>
 <div class="sourceCode" id="cb7"><pre class="downlit">
 <span class="kw">bps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_bp.html">find_bp</a></span>(dfi = <span class="kw">cdc</span><span class="op">$</span><span class="kw">dfi</span>, 
                n_bp = <span class="fl">3</span>,
