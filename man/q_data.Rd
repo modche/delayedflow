@@ -14,7 +14,7 @@ q_data
 18 years of daily streamflow from river Dreisam (Germany). Values are m3/s.
 }
 \examples{
-data(q_data)
-q_data
+head(q_data,25)
+tail(q_data,25)
 }
 \keyword{datasets}

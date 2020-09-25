@@ -17,7 +17,7 @@
 #'     Default is c(0.5, 0.5), i.e. equal weights. Sum of vector must be 1. To switch of one measure use
 #'     \code{c(1, 0)} or \code{c(0,1)}. With the weighting more or less focus could be given to the upper parts
 #'     of the DFI curve (i.e. when block length \code{n} for separation is between 1 and 10).
-#' @param desc logical, if `TRUE` DFI values are converted to be monotonically descreasing with [cummin()]
+#' @param desc logical, if `TRUE` DFI values are converted to be monotonically decreasing with [cummin()]
 #' @param print logical, if `TRUE` best breakpoint estimates during calculation are printed (debug mode)
 #' @param plotting logical, if `TRUE` the DFI curve and piecewise linear segments are plotted with \code{plot()}
 #'
@@ -127,9 +127,9 @@ find_bps <- function(dfi,
         if(i %in% floor(nrow(bp_grid) * 1:4/4)) cat(paste0(round(i/nrow(bp_grid)*100,0)),"%  ")
 
 	}
-	cat("\nBreakpoints ready . . . \n\n\n")
+	cat("\nBreakpoints ready . . . \n")
 
-result$rel_contr <- -diff(c(dfi[c(1, result$breakpoints+1)], 0))
+result$rel_contr <- -diff(c(dfi[c(1, result$bps_position+1)], 0))
 
 if (plotting){
 	plot(0:(len-1), dfi,

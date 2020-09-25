@@ -190,7 +190,7 @@ of the DFI curve (i.e. when block length <code>n</code> for separation is betwee
     </tr>
     <tr>
       <th>desc</th>
-      <td><p>logical, if <code>TRUE</code> DFI values are converted to be monotonically descreasing with <code><a href='https://rdrr.io/r/base/cumsum.html'>cummin()</a></code></p></td>
+      <td><p>logical, if <code>TRUE</code> DFI values are converted to be monotonically decreasing with <code><a href='https://rdrr.io/r/base/cumsum.html'>cummin()</a></code></p></td>
     </tr>
     <tr>
       <th>print</th>
@@ -223,9 +223,7 @@ is the slowest contribution to streamflow.</p></dd>
 <span class='fu'>find_bps</span>(<span class='kw'>dfi_example</span>, n_bp = <span class='fl'>2</span>, bp_max = <span class='fl'>90</span>, plotting = <span class='fl'>TRUE</span>)
 </div><div class='output co'>#&gt; Calculating breakpoints . . . 
 #&gt;  0%  25 %  50 %  75 %  100 %  
-#&gt; Breakpoints ready . . . 
-#&gt; 
-#&gt; </div><div class='img'><img src='find_bps-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $bps_position
+#&gt; Breakpoints ready . . . </div><div class='img'><img src='find_bps-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $bps_position
 #&gt; bp_1 bp_2 
 #&gt;    8   60 
 #&gt; 
@@ -233,7 +231,7 @@ is the slowest contribution to streamflow.</p></dd>
 #&gt; [1] 0.02465472
 #&gt; 
 #&gt; $rel_contr
-#&gt; [1] 1
+#&gt; [1] 0.4590561 0.3518302 0.1891137
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

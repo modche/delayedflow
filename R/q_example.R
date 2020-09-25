@@ -6,6 +6,6 @@
 #'
 #' @format data.frame
 #' @examples
-#' data(q_data)
-#' q_data
+#' head(q_data,25)
+#' tail(q_data,25)
 "q_data"

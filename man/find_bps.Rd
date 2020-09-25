@@ -36,7 +36,7 @@ Default is c(0.5, 0.5), i.e. equal weights. Sum of vector must be 1. To switch o
 \code{c(1, 0)} or \code{c(0,1)}. With the weighting more or less focus could be given to the upper parts
 of the DFI curve (i.e. when block length \code{n} for separation is between 1 and 10).}
 
-\item{desc}{logical, if \code{TRUE} DFI values are converted to be monotonically descreasing with \code{\link[=cummin]{cummin()}}}
+\item{desc}{logical, if \code{TRUE} DFI values are converted to be monotonically decreasing with \code{\link[=cummin]{cummin()}}}
 
 \item{print}{logical, if \code{TRUE} best breakpoint estimates during calculation are printed (debug mode)}
 
