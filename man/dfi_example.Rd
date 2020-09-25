@@ -13,7 +13,7 @@ dfi_example
 \description{
 Example of DFI values. This is dummy data. A vector with 121 \code{DFI}-values between 1 and 0.
 The index is decreasing monotonously with larger n.
-This can be used for testing the \link{find_bp} function.
+This can be used for testing the \link{find_bps} function.
 }
 \examples{
 data(dfi_example)
