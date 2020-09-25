@@ -4,13 +4,15 @@
 \alias{find_nmax}
 \title{Find nmax based on low flow thresholds}
 \usage{
-find_nmax(df, n = 1:180)
+find_nmax(df, n = 1:180, desc = TRUE)
 }
 \arguments{
 \item{df}{data.frame with two columns, first column must be Date, second must be streamflow
 data.}
 
 \item{n}{numeric vector}
+
+\item{desc}{logical, if \code{TRUE} DFI values are converted to be monotonically decreasing with \code{\link[=cummin]{cummin()}}}
 }
 \value{
 A list.

@@ -132,7 +132,7 @@
     <p>Find nmax based on low flow thresholds</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_nmax</span>(<span class='kw'>df</span>, n = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>180</span>)</pre>
+    <pre class="usage"><span class='fu'>find_nmax</span>(<span class='kw'>df</span>, n = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>180</span>, desc = <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,6 +145,10 @@ data.</p></td>
     <tr>
       <th>n</th>
       <td><p>numeric vector</p></td>
+    </tr>
+    <tr>
+      <th>desc</th>
+      <td><p>logical, if <code>TRUE</code> DFI values are converted to be monotonically decreasing with <code><a href='https://rdrr.io/r/base/cumsum.html'>cummin()</a></code></p></td>
     </tr>
     </table>
 

@@ -37,7 +37,7 @@ plot(x = 0:120, y = cdc$dfi,
 
 ```{r}
 bps <- find_bps(dfi = cdc$dfi, 
-			   n_bp = 2,
+			   n_bp = 3,
 			   plotting = TRUE)
 ```
 
@@ -51,5 +51,18 @@ Looking at:
 bps$bps_position
 bps$bias
 bps$rel_contr
+```
+
+# Estimation of nmax
+
+```{r}
+head(q_data)
+find_nmax(q_data)
+```
+
+The results show that breakpoints at 65, 66 or 45 days (depending on low flow threshold) lead to a DFI value that equals the threshold.
+
+```{r, warning=FALSE}
+dfi_n(q = q_data$q_obs, n = c(44:46, 64:67), add_zero = FALSE)
 ```
 

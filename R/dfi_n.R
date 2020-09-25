@@ -1,9 +1,9 @@
 #' Calculation of DFI (or BFI) with block length n or 1:n
 #'
 #' @description Common baseflow separation separates quick- and baseflow with a
-#'   block length of n = 5 with \code{baseflow(q_obs, n = 5)}. To generate multiple separations
-#'   for the DFI index \code{n} vary between 1 and \code{n_max} (e.g. 60, 90 or 120 days). To do this the
-#'   function could be used with a \code{n} as a vector instead of a single integer (e.g. \code{baseflow(q_obs, n = 1:60)})
+#'   block length of n = 5 with \code{dfi_n(q_obs, n = 5)}. To generate multiple hydrograph separations
+#'   for the DFI index \code{n} vary between 1 and \code{nmax} (e.g. 60, 90 or 120 days). To do this the
+#'   function could be used with a \code{n} as a vector instead of a single integer (e.g. \code{dfi_n(q_obs, n = 1:60)})
 #'   Note, separation with \code{n=0} is not possible. The DFI of \code{n=1} is not 1 as due to the algorithm some
 #'   streamflow peaks are separated from delayed flow.
 #' @param q vector with streamflow series
@@ -14,7 +14,7 @@
 #'   But also variations like \code{n = c(1,5,10,15,30)} are possible.
 #' @param desc logical, if `TRUE` DFI values are converted to be monotonically descreasing with [cummin()]
 #' @param add_zero logical, default is \code{TRUE}. If \code{TRUE}, \code{n=0} and \code{dfi=1} is added to
-#'     output data.frame. Note that the \code{DFI} of a separation with \code{n=0} is by definition \code{DFI = 1}.
+#'     output data.frame. Note that the in a hydrograph separation with \code{n=0} is by definition \code{DFI = 1}.
 
 #' @return A data.frame with two columns: \code{n} for block length and \code{dfi} with the \code{DFI(n)} values.
 #'     If \code{n} is a single integer the function returns a single integer (i.e. one \code{DFI(n)} value).

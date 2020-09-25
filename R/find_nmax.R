@@ -3,13 +3,13 @@
 #' @param df data.frame with two columns, first column must be Date, second must be streamflow
 #'     data.
 #' @param n numeric vector
-#'
+#' @param desc logical, if `TRUE` DFI values are converted to be monotonically decreasing with [cummin()]
 #' @return A list.
 #' @export
 #'
 #' @examples
 #' find_nmax(q_data)
-find_nmax <- function(df, n = 1:180){
+find_nmax <- function(df, n = 1:180, desc = TRUE){
 
 	if (class(df) != "data.frame") {
 		stop("Input data df_q must be a data.frame.")
@@ -34,15 +34,15 @@ find_nmax <- function(df, n = 1:180){
 	q90_q50 <- as.numeric(quantile(df$q7, probs = 0.10, na.rm=T) /
 						  	quantile(df$q7, probs = 0.50, na.rm=T))
 
-	cdc <- dfi_n(df$q, n = n)
+	cdc <- dfi_n(df$q, n = n, desc = desc)
 
 	if(any(min(cdc$dfi)> c(mam_mq, q95_q50, q90_q50))) {
 		warning("Minimum of CDC might be lager than indices. Consider to use larger 1:n.")
 	}
 
-	bp_a <- which.min(abs(cdc$dfi-mam_mq))
-	bp_b <- which.min(abs(cdc$dfi-q95_q50))
-	bp_c <- which.min(abs(cdc$dfi-q90_q50))
+	bp_a <- min(which.min(abs(cdc$dfi-mam_mq)))
+	bp_b <- min(which.min(abs(cdc$dfi-q95_q50)))
+	bp_c <- min(which.min(abs(cdc$dfi-q90_q50)))
 
 
 	return(list(mam_mq = c(mam_mq, as.integer(bp_a)),
