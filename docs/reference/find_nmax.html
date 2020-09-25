@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • delayedflow</title>
+<title>Find nmax based on low flow thresholds — find_nmax • delayedflow</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,8 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Find nmax based on low flow thresholds — find_nmax" />
+<meta property="og:description" content="Find nmax based on low flow thresholds" />
 
 
 
@@ -58,7 +59,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -120,90 +121,49 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Find nmax based on low flow thresholds</h1>
+    <small class="dont-index">Source: <a href='https://github.com/modche/delayedflow/blob/master/R/find_nmax.R'><code>R/find_nmax.R</code></a></small>
+    <div class="hidden name"><code>find_nmax.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Find nmax based on low flow thresholds</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>find_nmax</span>(<span class='kw'>df</span>, n = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>180</span>)</pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="baseflow.html">baseflow()</a></code> </p>
-        </td>
-        <td><p>Calculation of baseflow based on smoothed minima method</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dfi_example.html">dfi_example</a></code> </p>
-        </td>
-        <td><p>Example data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dfi_n.html">dfi_n()</a></code> </p>
-        </td>
-        <td><p>Calculation of DFI (or BFI) with block length n or 1:n</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_bps.html">find_bps()</a></code> </p>
-        </td>
-        <td><p>Find breakpoints in DFI curve</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="find_nmax.html">find_nmax()</a></code> </p>
-        </td>
-        <td><p>Find nmax based on low flow thresholds</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="mae.html">mae()</a></code> </p>
-        </td>
-        <td><p>Mean Absolute Error</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="q_data.html">q_data</a></code> </p>
-        </td>
-        <td><p>Example streamflow data</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="rmse.html">rmse()</a></code> </p>
-        </td>
-        <td><p>Root Mean Square Error</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="which.min.na.html">which.min.na()</a></code> </p>
-        </td>
-        <td><p>Helper Function for which.min(x)</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>df</th>
+      <td><p>data.frame with two columns, first column must be Date, second must be streamflow
+data.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>numeric vector</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>A list.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>find_nmax</span>(<span class='kw'>q_data</span>)
+</div><div class='output co'>#&gt; $mam_mq
+#&gt; [1]  0.1126321 65.0000000
+#&gt; 
+#&gt; $q95_q50
+#&gt; [1]  0.1077096 66.0000000
+#&gt; 
+#&gt; $q90_q50
+#&gt; [1]  0.2159688 45.0000000
+#&gt; </div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>

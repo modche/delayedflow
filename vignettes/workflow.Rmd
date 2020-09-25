@@ -36,8 +36,8 @@ plot(x = 0:120, y = cdc$dfi,
 # Finding breakpoints
 
 ```{r}
-bps <- find_bp(dfi = cdc$dfi, 
-			   n_bp = 3,
+bps <- find_bps(dfi = cdc$dfi, 
+			   n_bp = 2,
 			   plotting = TRUE)
 ```
 
@@ -48,7 +48,7 @@ Looking at:
  - relative streamflow contributions between `filter_min`, the breakpoint(s) and `filter_max.`
 
 ```{r}
-bps$breakpoints
+bps$bps_position
 bps$bias
 bps$rel_contr
 ```

@@ -2,7 +2,8 @@
 
 export(baseflow)
 export(dfi_n)
-export(find_bp)
+export(find_bps)
+export(find_nmax)
 export(mae)
 export(rmse)
 export(which.min.na)

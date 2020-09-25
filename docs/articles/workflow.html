@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">delayedflow</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11</span>
       </span>
     </div>
 
@@ -120,12 +120,12 @@
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span>(<span class="kw">cdc</span>)
 </pre></div>
 <pre><code>##       n        dfi
-## 116 115 0.09226581
-## 117 116 0.09215959
-## 118 117 0.09596068
-## 119 118 0.09647908
-## 120 119 0.09658072
-## 121 120 0.09224105</code></pre>
+## 116 115 0.09210385
+## 117 116 0.09210385
+## 118 117 0.09210385
+## 119 118 0.09210385
+## 120 119 0.09210385
+## 121 120 0.09210385</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span>(x = <span class="fl">0</span><span class="op">:</span><span class="fl">120</span>, y = <span class="kw">cdc</span><span class="op">$</span><span class="kw">dfi</span>, 
      type = <span class="st">"o"</span>, ylim = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0</span>,<span class="fl">1</span>),
@@ -138,8 +138,8 @@
 <h1 class="hasAnchor">
 <a href="#finding-breakpoints" class="anchor"></a>Finding breakpoints</h1>
 <div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="kw">bps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_bp.html">find_bp</a></span>(dfi = <span class="kw">cdc</span><span class="op">$</span><span class="kw">dfi</span>, 
-               n_bp = <span class="fl">3</span>,
+<span class="kw">bps</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_bps.html">find_bps</a></span>(dfi = <span class="kw">cdc</span><span class="op">$</span><span class="kw">dfi</span>, 
+               n_bp = <span class="fl">2</span>,
                plotting = <span class="fl">TRUE</span>)
 </pre></div>
 <pre><code>## Calculating breakpoints . . . 
@@ -154,18 +154,18 @@
 </li>
 </ul>
 <div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="kw">bps</span><span class="op">$</span><span class="kw">breakpoints</span>
+<span class="kw">bps</span><span class="op">$</span><span class="kw">bps_position</span>
 </pre></div>
-<pre><code>## bp_1 bp_2 bp_3 
-##    4   20   65</code></pre>
+<pre><code>## bp_1 bp_2 
+##    6   59</code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit">
 <span class="kw">bps</span><span class="op">$</span><span class="kw">bias</span>
 </pre></div>
-<pre><code>## [1] 0.01449936</code></pre>
+<pre><code>## [1] 0.03080657</code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit">
 <span class="kw">bps</span><span class="op">$</span><span class="kw">rel_contr</span>
 </pre></div>
-<pre><code>## [1] 0.4516284 0.2286085 0.2107172 0.1090459</code></pre>
+<pre><code>## [1] 1</code></pre>
 </div>
   </div>
 

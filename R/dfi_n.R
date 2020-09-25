@@ -12,6 +12,7 @@
 #'   multiple separations for all \code{n} values are calculated. To analyze later on the
 #'   DFI curve it is recommended that \code{n} starts at 1 and is a continuous vector (e.g. 1,2,3,.... 58, 59, 60).
 #'   But also variations like \code{n = c(1,5,10,15,30)} are possible.
+#' @param desc logical, if `TRUE` DFI values are converted to be monotonically descreasing with [cummin()]
 #' @param add_zero logical, default is \code{TRUE}. If \code{TRUE}, \code{n=0} and \code{dfi=1} is added to
 #'     output data.frame. Note that the \code{DFI} of a separation with \code{n=0} is by definition \code{DFI = 1}.
 
@@ -21,15 +22,16 @@
 #'
 #' @examples
 #' # same as BFI calculation
-#' dfi_n(q_data$q_obs, n = 5)
+#' bfi <- dfi_n(q_data$q_obs, n = 5)
+#' bfi
 #'
-#' # 10 different separations based on various block length n
-#' dfi_n(q_data$q_obs, n = 1:10)
+#' # 60 different separations based on various block length n
+#' dfi_n(q_data$q_obs, n = 1:60)
 #'
 #' # only specific block lengths are used
-#' dfi_n(q_data$q_obs, n = c(1,5,10,30,60,90), add_zero = FALSE)
+#' dfi_n(q_data$q_obs, n = c(1:5,10,30,60,90), add_zero = FALSE)
 #'
-dfi_n <- function(q, n = 5, add_zero = TRUE) {
+dfi_n <- function(q, n = 5, desc = TRUE, add_zero = TRUE) {
 
 	if (0 %in% n) stop("DFI calculation not possible if n = 0. Set add_zero = TRUE.")
 
@@ -54,6 +56,11 @@ dfi_n <- function(q, n = 5, add_zero = TRUE) {
 			}
 
 		}
+
+		if(desc) {
+			df$dfi <- cummin(df$dfi)
+		}
+
 		return(df)
 	}
 }
