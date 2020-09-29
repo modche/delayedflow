@@ -9,6 +9,9 @@
 #' @return Baseflow series.
 #' @export
 #'
+#' @references lfstat: Calculation of Low Flow Statistics for Daily Stream Flow Data
+#'     D. Koffler, T. Gauster, T., and G. Laaha (https://CRAN.R-project.org/package=lfstat)
+#'
 #' @examples
 #'\dontrun{
 #'baseflow(q_data$q_obs, block.len = 10)

@@ -1,6 +1,6 @@
 # delayedflow
 
-`delayedflow` is developed to make it quick and easy to perform a delayed flow separation with streamflow data. The package is based on the publication from  [Stoelzle et al. (2020)](https://hess.copernicus.org/articles/24/849/2020/) where common binary baseflow separation into quick- and baseflow is advanced by the DFI (Delayed Flow Index) to quantify multiple delayed contributions.
+`delayedflow` is developed to make it quick and easy to perform a delayed flow separation with streamflow data. The package is based on the publication from  [Stoelzle et al. (2020)](https://hess.copernicus.org/articles/24/849/2020/) where common binary baseflow separation into quick- and baseflow is advanced by the DFI (Delayed Flow Index) to quantify multiple delayed contributions to streamflow.
 
 As in hydrology different sources (e.g. like storm flow, interflow, snow or glacier melt, groundwater) shape the catchments' hydrographs the DFI method considers specifically the specific streamflow contributions in each catchment. Therefore the hydrograph (streamflow signal) is deconvoluted based on a Characteristic Delay Curve (CDC).
 

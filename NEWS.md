@@ -10,4 +10,5 @@
 ### delayedflow 0.11
 
 - adding function `find_nmax()` to derive a `nmax` value.
-- change many paramter names to more meaningful terms (e.g. `bp_mingap`).
+- change many parameter names to more meaningful terms (e.g. `bp_mingap`).
+- `mam_mq` as delaut low flow index, only one index output is now possible.

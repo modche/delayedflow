@@ -124,12 +124,13 @@ find_bps <- function(dfi,
 			result <- list(bps_position = bps, bias = dummy )
 		}
 
-        if(i %in% floor(nrow(bp_grid) * 1:4/4)) cat(paste0(round(i/nrow(bp_grid)*100,0)),"%  ")
+        if(i %in% floor(nrow(bp_grid) * 1:5/5)) cat(paste0(round(i/nrow(bp_grid)*100,0)),"%  ")
 
 	}
 	cat("\nBreakpoints ready . . . \n")
 
 result$rel_contr <- -diff(c(dfi[c(1, result$bps_position+1)], 0))
+names(result$rel_contr) <- c(paste0("contr_", 1:length(result$rel_contr)))
 
 if (plotting){
 	plot(0:(len-1), dfi,

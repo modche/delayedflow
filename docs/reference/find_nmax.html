@@ -102,7 +102,7 @@ DFI value with a separation block size of N that match the index value." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/tidy_streamflow_contr.html">delayedflow analysis in R tidyverse</a>
+      <a href="../articles/tidy_streamflow_contr.html">Delayedflow Analysis in R tidyverse</a>
     </li>
     <li>
       <a href="../articles/workflow.html">Workflow with delayflow package</a>
@@ -181,7 +181,7 @@ the deviation between the indices might be large(r).</p></td>
 <dt>index_value</dt><dd><p>Index value of the used low flow index ranging between 0 and 1.
 Higher values indicating more stable flow regimes and less low flow sensitivity.</p></dd>
 <dt>bp_nmax</dt><dd><p>Position <code>N</code> of breakpoint where absolute deviation between <code>DFI_N</code>
-and low flow index is minimal (considering all <code>DFI</code> values).</p></dd>
+and low flow index is minimal (considering all <code>DFI</code> values), <code><a href='https://rdrr.io/r/base/Extremes.html'>min(which.min(abs(cdc$dfi-index)))</a></code></p></dd>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

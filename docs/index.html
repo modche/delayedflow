@@ -56,7 +56,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="articles/tidy_streamflow_contr.html">delayedflow analysis in R tidyverse</a>
+      <a href="articles/tidy_streamflow_contr.html">Delayedflow Analysis in R tidyverse</a>
     </li>
     <li>
       <a href="articles/workflow.html">Workflow with delayflow package</a>
@@ -89,7 +89,7 @@
 <div id="delayedflow" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#delayedflow" class="anchor"></a>delayedflow</h1></div>
-<p><code>delayedflow</code> is developed to make it quick and easy to perform a delayed flow separation with streamflow data. The package is based on the publication from <a href="https://hess.copernicus.org/articles/24/849/2020/">Stoelzle et al. (2020)</a> where common binary baseflow separation into quick- and baseflow is advanced by the DFI (Delayed Flow Index) to quantify multiple delayed contributions.</p>
+<p><code>delayedflow</code> is developed to make it quick and easy to perform a delayed flow separation with streamflow data. The package is based on the publication from <a href="https://hess.copernicus.org/articles/24/849/2020/">Stoelzle et al. (2020)</a> where common binary baseflow separation into quick- and baseflow is advanced by the DFI (Delayed Flow Index) to quantify multiple delayed contributions to streamflow.</p>
 <p>As in hydrology different sources (e.g. like storm flow, interflow, snow or glacier melt, groundwater) shape the catchments’ hydrographs the DFI method considers specifically the specific streamflow contributions in each catchment. Therefore the hydrograph (streamflow signal) is deconvoluted based on a Characteristic Delay Curve (CDC).</p>
 <p>To gain a CDC multiple streamflow separations are performed to quantify how much faster and how much slower streamflow contributions shape the hydrograph. Instead of having one separation (as for the common BFI, BaseFlow Index) <code>delayedflow</code> performs <code>n</code> separations and created the CDC out of them. Then a breakpoint analysis (<code>find_bp</code>) transforms the normally expotential falling CDC into piecewise linear segments where in between the breakpoints indicating that a faster source stops to contribute to streamflow and a slower source gets more dominate.</p>
 <p>The figure below shows four examples of CDCs in four different catchments and how the breakpoints are used to identify different delayed contributions.</p>
