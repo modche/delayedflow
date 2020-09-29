@@ -2,9 +2,9 @@
 % Please edit documentation in R/find_nmax.R
 \name{find_nmax}
 \alias{find_nmax}
-\title{Find nmax based on low flow thresholds}
+\title{Find maximum breakpoint position based on low flow threshold(s)}
 \usage{
-find_nmax(df, n = 1:180, desc = TRUE)
+find_nmax(df, n = 1:180, desc = TRUE, lowflow_index = c("mam_mq"))
 }
 \arguments{
 \item{df}{data.frame with two columns, first column must be Date, second must be streamflow
@@ -13,12 +13,27 @@ data.}
 \item{n}{numeric vector}
 
 \item{desc}{logical, if \code{TRUE} DFI values are converted to be monotonically decreasing with \code{\link[=cummin]{cummin()}}}
+
+\item{lowflow_index}{Which Low Flow Index should be used? MAM/MQ (default), Q95/Q50, Q90/Q50.
+Index names are "mam_mq", "q95_q50" or "q90_q50". Note that especially in highly seasonal regimes
+the deviation between the indices might be large(r).}
 }
 \value{
-A list.
+Function returns a list with two elements: \code{$index_value} and \code{$bp_nmax}
+\item{index_value}{Index value of the used low flow index ranging between 0 and 1.
+Higher values indicating more stable flow regimes and less low flow sensitivity.}
+\item{bp_nmax}{Position \code{N} of breakpoint where absolute deviation between \code{DFI_N}
+and low flow index in minimal (considering all \code{DFI} values).}
 }
 \description{
-Find nmax based on low flow thresholds
+In order to constrain breakpoint analysis on DFI curves (CDCs = Characteristic
+Delay Curves) the length of 1:N delayed flow separations should be as short as possible. Normally the
+position N is searched where the CDCs is flattening out (slope = 0). To do this the DFI values of 1:N
+separations are compared against typical low flow indices (like the MAM/MQ). The low flow indices
+ranging between 0 and 1 indicating the low flow sensitivity. High index values (e.g. 0.60) indicating more
+stable flow regimes with larger catchment storages, lower index values (e.g. 0.20) indicating rather flashy
+flow regimes with faster recession behavior. The maximum breakpoint position is estimated by estimating the
+DFI value with a separation block size of N that match the index value.
 }
 \examples{
 find_nmax(q_data)
