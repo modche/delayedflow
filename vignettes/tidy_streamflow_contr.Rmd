@@ -1,5 +1,5 @@
 ---
-title: "Delayedflow Analysis in R tidyverse"
+title: "02 - Delayedflow Analysis in R tidyverse"
 author: "Michael Stölzle"
 date: "9/25/2020"
 output:
@@ -18,9 +18,15 @@ options(dplyr.summarise.inform=F)
 
 This is a quick example how to use the delayedflow package in a R tidyverse environment.
 
+
+## Load data
+
 ```{r}
 df <- read_tsv('https://raw.githubusercontent.com/modche/science_contr/master/4ezg.txt', col_types = cols())
 ```
+
+
+## CDC: Calculation and plotting
 
 ```{r}
 df %>% 
@@ -40,6 +46,7 @@ df %>%
 	 
 ```
 
+## Breakpoint estaimates
 
 ```{r, eval = TRUE}
 df2 <- df %>% 
@@ -60,6 +67,8 @@ bp_df <- df2 %>%
 bp_df
 ```
 
+## Relativ streamflow contributions
+
 ```{r, echo = FALSE}
 contr_df <- df2 %>% 
 		group_by(filename) %>% 
@@ -79,7 +88,7 @@ contr_df_long <- contr_df %>%
 	 # 					 labels = c("baseline", "intermediate_2", "intermediate_1", "short"))
 ```
 
-
+## Plotting rel. Contributions.
 ```{r, eval = TRUE}
 ggplot(data = contr_df) + 
 	geom_col(aes(x = rel_contr, y = filename, fill = class), 
