@@ -20,7 +20,7 @@
 #'     \item{index_value}{Index value of the used low flow index ranging between 0 and 1.
 #'     Higher values indicating more stable flow regimes and less low flow sensitivity.}
 #'     \item{bp_nmax}{Position \code{N} of breakpoint where absolute deviation between \code{DFI_N}
-#'     and low flow index in minimal (considering all \code{DFI} values).}
+#'     and low flow index is minimal (considering all \code{DFI} values).}
 #' @export
 #'
 #' @examples
@@ -62,7 +62,7 @@ find_nmax <- function(df, n = 1:180, desc = TRUE, lowflow_index = c("mam_mq")){
 	cdc <- dfi_n(df$q, n = n, desc = desc)
 
 	if(any(min(cdc$dfi)> index)) {
-		warning("Minimum of CDC might be lager than indices. Consider to use larger 1:n.")
+		warning("Minimum of CDC (i.e. the min(DFI_N)) might be larger than the index value.\nConsider to increase N in 1:N.")
 	}
 
 	bp <- min(which.min(abs(cdc$dfi-index)))

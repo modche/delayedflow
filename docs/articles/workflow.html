@@ -54,6 +54,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/tidy_streamflow_contr.html">delayedflow analysis in R tidyverse</a>
+    </li>
+    <li>
       <a href="../articles/workflow.html">Workflow with delayflow package</a>
     </li>
   </ul>
@@ -183,14 +186,11 @@
 <div class="sourceCode" id="cb17"><pre class="downlit">
 <span class="fu"><a href="../reference/find_nmax.html">find_nmax</a></span>(<span class="kw">q_data</span>)
 </pre></div>
-<pre><code>## $mam_mq
-## [1]  0.1126321 65.0000000
+<pre><code>## $index_value
+## [1] 0.1126321
 ## 
-## $q95_q50
-## [1]  0.1077096 66.0000000
-## 
-## $q90_q50
-## [1]  0.2159688 45.0000000</code></pre>
+## $bp_nmax
+## [1] 65</code></pre>
 <p>The results show that breakpoints at 65, 66 or 45 days (depending on low flow threshold) lead to a DFI value that equals the threshold.</p>
 <div class="sourceCode" id="cb19"><pre class="downlit">
 <span class="fu"><a href="../reference/dfi_n.html">dfi_n</a></span>(q = <span class="kw">q_data</span><span class="op">$</span><span class="kw">q_obs</span>, n = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">44</span><span class="op">:</span><span class="fl">46</span>, <span class="fl">64</span><span class="op">:</span><span class="fl">67</span>), add_zero = <span class="fl">FALSE</span>)

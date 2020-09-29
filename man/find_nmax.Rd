@@ -23,7 +23,7 @@ Function returns a list with two elements: \code{$index_value} and \code{$bp_nma
 \item{index_value}{Index value of the used low flow index ranging between 0 and 1.
 Higher values indicating more stable flow regimes and less low flow sensitivity.}
 \item{bp_nmax}{Position \code{N} of breakpoint where absolute deviation between \code{DFI_N}
-and low flow index in minimal (considering all \code{DFI} values).}
+and low flow index is minimal (considering all \code{DFI} values).}
 }
 \description{
 In order to constrain breakpoint analysis on DFI curves (CDCs = Characteristic

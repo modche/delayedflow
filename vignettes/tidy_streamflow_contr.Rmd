@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "delayedflow analysis in R tidyverse"
 author: "Michael Stölzle"
 date: "9/25/2020"
 output: html_document
@@ -20,19 +20,31 @@ df <- read_tsv('https://raw.githubusercontent.com/modche/science_contr/master/4e
 ```
 
 ```{r}
-
-
 df %>% 
 	group_by(filename) %>% 
 	summarise(cdc = dfi_n(q = q, n = 1:180)$dfi, .groups = "keep", n = 0:180 ) %>% 
 	ungroup() %>% 
 	ggplot(aes(x=n, y = cdc)) +
-		geom_line(aes(colour = filename))
+		geom_line(aes(colour = filename)) +
+		scale_x_continuous(breaks = c(0:6 * 30)) +
+		theme_bw(14) +
+		labs(title = "CDCs of 4 catchments",
+		     subtitle = "",
+		     caption = "", 
+			 colour = "",
+		     x = "Block length N (days)", y = "DFI (-)")+
+		theme(legend.position = c(0.80, 0.80))
+	 
+```
 
+
+```{r, eval = TRUE}
 df2 <- df %>% 
 	group_by(filename) %>% 
 	summarise(cdc = dfi_n(q = q, n = 1:180)$dfi, .groups = "keep", n = 0:180 ) %>% 
 	ungroup()
+
+df2
 
 
 bp_df <- df2 %>% 
@@ -42,7 +54,11 @@ bp_df <- df2 %>%
 		ungroup() %>% 
 		pivot_wider(names_from = "id", values_from = "bps")
 
+bp_df
+```
 
+
+```{r, eval = FALSE}
 exa1 <- df %>% filter(filename == "catchment4") %>% 
 	
 	mutate(interflow = baseflow(q, block.len = as.numeric(bp_df[1,2]))) %>% 

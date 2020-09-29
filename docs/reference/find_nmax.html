@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find nmax based on low flow thresholds — find_nmax • delayedflow</title>
+<title>Find maximum breakpoint position based on low flow threshold(s) — find_nmax • delayedflow</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,15 @@
 
 
 
-<meta property="og:title" content="Find nmax based on low flow thresholds — find_nmax" />
-<meta property="og:description" content="Find nmax based on low flow thresholds" />
+<meta property="og:title" content="Find maximum breakpoint position based on low flow threshold(s) — find_nmax" />
+<meta property="og:description" content="In order to constrain breakpoint analysis on DFI curves (CDCs = Characteristic
+Delay Curves) the length of 1:N delayed flow separations should be as short as possible. Normally the
+position N is searched where the CDCs is flattening out (slope = 0). To do this the DFI values of 1:N
+separations are compared against typical low flow indices (like the MAM/MQ). The low flow indices
+ranging between 0 and 1 indicating the low flow sensitivity. High index values (e.g. 0.60) indicating more
+stable flow regimes with larger catchment storages, lower index values (e.g. 0.20) indicating rather flashy
+flow regimes with faster recession behavior. The maximum breakpoint position is estimated by estimating the
+DFI value with a separation block size of N that match the index value." />
 
 
 
@@ -95,6 +102,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/tidy_streamflow_contr.html">delayedflow analysis in R tidyverse</a>
+    </li>
+    <li>
       <a href="../articles/workflow.html">Workflow with delayflow package</a>
     </li>
   </ul>
@@ -123,16 +133,23 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find nmax based on low flow thresholds</h1>
+    <h1>Find maximum breakpoint position based on low flow threshold(s)</h1>
     <small class="dont-index">Source: <a href='https://github.com/modche/delayedflow/blob/master/R/find_nmax.R'><code>R/find_nmax.R</code></a></small>
     <div class="hidden name"><code>find_nmax.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Find nmax based on low flow thresholds</p>
+    <p>In order to constrain breakpoint analysis on DFI curves (CDCs = Characteristic
+Delay Curves) the length of 1:N delayed flow separations should be as short as possible. Normally the
+position N is searched where the CDCs is flattening out (slope = 0). To do this the DFI values of 1:N
+separations are compared against typical low flow indices (like the MAM/MQ). The low flow indices
+ranging between 0 and 1 indicating the low flow sensitivity. High index values (e.g. 0.60) indicating more
+stable flow regimes with larger catchment storages, lower index values (e.g. 0.20) indicating rather flashy
+flow regimes with faster recession behavior. The maximum breakpoint position is estimated by estimating the
+DFI value with a separation block size of N that match the index value.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>find_nmax</span>(<span class='kw'>df</span>, n = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>180</span>, desc = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>find_nmax</span>(<span class='kw'>df</span>, n = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>180</span>, desc = <span class='fl'>TRUE</span>, lowflow_index = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"mam_mq"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -150,22 +167,30 @@ data.</p></td>
       <th>desc</th>
       <td><p>logical, if <code>TRUE</code> DFI values are converted to be monotonically decreasing with <code><a href='https://rdrr.io/r/base/cumsum.html'>cummin()</a></code></p></td>
     </tr>
+    <tr>
+      <th>lowflow_index</th>
+      <td><p>Which Low Flow Index should be used? MAM/MQ (default), Q95/Q50, Q90/Q50.
+Index names are "mam_mq", "q95_q50" or "q90_q50". Note that especially in highly seasonal regimes
+the deviation between the indices might be large(r).</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list.</p>
+    <p>Function returns a list with two elements: <code>$index_value</code> and <code>$bp_nmax</code></p>
+<dt>index_value</dt><dd><p>Index value of the used low flow index ranging between 0 and 1.
+Higher values indicating more stable flow regimes and less low flow sensitivity.</p></dd>
+<dt>bp_nmax</dt><dd><p>Position <code>N</code> of breakpoint where absolute deviation between <code>DFI_N</code>
+and low flow index is minimal (considering all <code>DFI</code> values).</p></dd>
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>find_nmax</span>(<span class='kw'>q_data</span>)
-</div><div class='output co'>#&gt; $mam_mq
-#&gt; [1]  0.1126321 65.0000000
+</div><div class='output co'>#&gt; $index_value
+#&gt; [1] 0.1126321
 #&gt; 
-#&gt; $q95_q50
-#&gt; [1]  0.1077096 66.0000000
-#&gt; 
-#&gt; $q90_q50
-#&gt; [1]  0.2159688 45.0000000
+#&gt; $bp_nmax
+#&gt; [1] 65
 #&gt; </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
