@@ -89,20 +89,24 @@
 <div id="delayedflow" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#delayedflow" class="anchor"></a>delayedflow</h1></div>
-<p><code>delayedflow</code> is developed to make it quick and easy to perform a delayed flow separation with streamflow data. The package is based on the publication from <a href="https://hess.copernicus.org/articles/24/849/2020/">Stoelzle et al. (2020)</a> where common binary baseflow separation into quick- and baseflow is advanced by the DFI (Delayed Flow Index) to quantify multiple delayed contributions to streamflow.</p>
-<p>As in hydrology different sources (e.g. like storm flow, interflow, snow or glacier melt, groundwater) shape the catchments’ hydrographs the DFI method considers specifically the specific streamflow contributions in each catchment. Therefore the hydrograph (streamflow signal) is deconvoluted based on a Characteristic Delay Curve (CDC).</p>
-<p>To gain a CDC multiple streamflow separations are performed to quantify how much faster and how much slower streamflow contributions shape the hydrograph. Instead of having one separation (as for the common BFI, BaseFlow Index) <code>delayedflow</code> performs <code>n</code> separations and created the CDC out of them. Then a breakpoint analysis (<code>find_bp</code>) transforms the normally expotential falling CDC into piecewise linear segments where in between the breakpoints indicating that a faster source stops to contribute to streamflow and a slower source gets more dominate.</p>
-<p>The figure below shows four examples of CDCs in four different catchments and how the breakpoints are used to identify different delayed contributions.</p>
-<p><img src="./vignettes/cdc.png" alt="cdc.png"></p>
+<p>Understanding components of the total streamflow is important to assess the ecological functioning of rivers. Here hydrologists asks how much water comes from different sources like snow melt, groundwater, lakes and sustains streamflow. Binary or two-component separation of streamflow into a quick and a slow (often referred to as baseflow) component are often based on arbitrary choices of separation parameters and also merge different delayed components into one baseflow component (e.g. snow melt and groundwater contribution). As streamflow generation during dry weather often results from drainage of multiple sources, it is proposed to extend the BFI by a delayed-flow index (DFI) considering the dynamics of multiple delayed contributions to streamflow.</p>
+<p>The DFI is based on characteristic delay curves (CDCs) where the identification of breakpoint (BP) estimates helps to avoid rather subjective separation parameters and allows for distinguishing four types of delayed streamflow contributions.</p>
 <div id="1-introduction" class="section level3">
 <h3 class="hasAnchor">
 <a href="#1-introduction" class="anchor"></a>1. Introduction</h3>
-<p>cooming soon</p>
+<p>The <code>delayedflow</code> package in R is developed to make it quick and easy to perform a delayed flow separation on the basis of streamflow (discharge) date only. The package is based on the publication from <a href="https://hess.copernicus.org/articles/24/849/2020/">Stoelzle et al. (2020)</a> where common binary baseflow separation into quick- and baseflow is advanced by the DFI (Delayed Flow Index) to quantify multiple delayed contributions to streamflow.</p>
+<p>Specifically, the R package performs:</p>
+<ul>
+<li>DFI separations with variable block length N (baseflow separation has fixed N = 5 days)</li>
+<li>Estimation of breakpoint(s)</li>
+<li>Quantification of relative streamflow contributions in different delay classes</li>
+<li>Couple of minor analyses</li>
+</ul>
 </div>
 <div id="2-package-installation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#2-package-installation" class="anchor"></a>2. Package installation</h3>
-<p>The <code>delayedflow</code> package is in beta testing now. It is not available via CRAN yet.</p>
+<p>The <code>delayedflow</code> package is in beta testing now. It is not available on CRAN.</p>
 <pre class="{r}"><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html"># ----- use package in R  -----
 #install.packages("devtools")
 devtools::install_github("modche/delayedflow")</a></code></pre>
@@ -110,17 +114,22 @@ devtools::install_github("modche/delayedflow")</a></code></pre>
 <div id="3-vignette--manual" class="section level3">
 <h3 class="hasAnchor">
 <a href="#3-vignette--manual" class="anchor"></a>3. Vignette / Manual</h3>
-<p>Go to <a href="https://modche.github.io/delayedflow/" class="uri">https://modche.github.io/delayedflow/</a></p>
+<p><a href="https://modche.github.io/delayedflow/">Website with package documentation</a></p>
+<pre class="{r}"><code><a href="https://rdrr.io/pkg/delayedflow/man"># ----- get help in R after installation  -----
+help(package = "delayedflow")</a></code></pre>
 </div>
 <div id="3-reporting-issues" class="section level3">
 <h3 class="hasAnchor">
 <a href="#3-reporting-issues" class="anchor"></a>3. Reporting issues</h3>
-<p>Please report any issue you have with the package on <a href="https://github.com/modche/delayedflow/issues" class="uri">https://github.com/modche/delayedflow/issues</a></p>
+<p>Please report any issue you have with the package on</p>
+<p><a href="https://github.com/modche/delayedflow/issues" class="uri">https://github.com/modche/delayedflow/issues</a></p>
+<p>This is especially helpful to eliminate bugs and improve the functionality of the package.</p>
 </div>
 <div id="4-references" class="section level3">
 <h3 class="hasAnchor">
 <a href="#4-references" class="anchor"></a>4. References</h3>
 <p>Stoelzle, M., Schuetz, T., Weiler, M., Stahl, K., &amp; Tallaksen, L. M. (2020). Beyond binary baseflow separation: a delayed-flow index for multiple streamflow contributions. Hydrology and Earth System Sciences, 24(2), 849-867, <a href="https://hess.copernicus.org/articles/24/849/2020/" class="uri">https://hess.copernicus.org/articles/24/849/2020/</a>.</p>
+<p>Baseflow function based on the lfstat package. <a href="https://cran.r-project.org/web/packages/lfstat/index.html" class="uri">https://cran.r-project.org/web/packages/lfstat/index.html</a></p>
 </div>
 </div>
   </div>
