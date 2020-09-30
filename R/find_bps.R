@@ -134,13 +134,32 @@ names(result$rel_contr) <- c(paste0("contr_", 1:length(result$rel_contr)))
 
 if (plotting){
 	plot(0:(len-1), dfi,
-		 type = "l",
+		 type = "s",
+		 lwd = 1.15,
 		 col = "blue",
-		 ylim = c(0,1),
-		 ylab = "DFI",
-		 xlab = "Filter width N")
+		 bty = "l",
+		 xaxs = "i",
+		 yaxs = "i",
+		 ylim = c(0,1.025),
+		 xlim = c(-2,nmax * 1.15),
+		 ylab = "DFI (-)",
+		 xlab = "Block length N")
+	grid(lty = 1, lwd = 0.5)
 	points(0:(len-1), best_fit, type = "l", col = "red")
-	abline(v=result$bps_position)
+	for (b in 1:length(result$bps_position)) {
+		segments(x0 = result$bps_position[b],
+			 y0 = dfi[result$bps_position[b]+1],
+			 x1 = result$bps_position[b],
+			 y1 = 0,
+			 lty = 2, lwd = 0.85)
+		points(result$bps_position[b],dfi[result$bps_position[b]+1], pch = 16)
+
+	}
+	points(0,1, pch = 16)
+	points(nmax-1,dfi[nmax-1], pch = 16)
+
+
+
 }
 
 
