@@ -42,7 +42,7 @@
 <meta property="og:title" content="Find breakpoints in DFI curve — find_bps" />
 <meta property="og:description" content="Estimates n breakpoints in the DFI curve.
 DFI values are compared against n+1 piecewise linear segments and the minimization of the
-corresponding residuals. Several parameters can be customized.
+residuals (between linear segments and DFI curve). Several parameters can be customized.
 If q_obs is given in daily temporal resolution then also n can be interpreted as delay in days
 for different contributions (default)." />
 
@@ -138,7 +138,7 @@ for different contributions (default)." />
     <div class="ref-description">
     <p>Estimates n breakpoints in the DFI curve.
 DFI values are compared against n+1 piecewise linear segments and the minimization of the
-corresponding residuals. Several parameters can be customized.
+residuals (between linear segments and DFI curve). Several parameters can be customized.
 If <code>q_obs</code> is given in daily temporal resolution then also <code>n</code> can be interpreted as delay in days
 for different contributions (default).</p>
     </div>
@@ -165,7 +165,8 @@ for different contributions (default).</p>
     </tr>
     <tr>
       <th>n_bp</th>
-      <td><p>numeric, How many breakpoints (1, 2, 3) should be estimated (default = 2)?</p></td>
+      <td><p>numeric, How many breakpoints (1, 2, 3) should be estimated (default = 2)? If <code>n_bp = 3</code>
+calculation time could be longer if also <code>nmax</code> is high. <code>nmax</code> could be estimated with <a href='find_nmax.html'>find_nmax</a>.</p></td>
     </tr>
     <tr>
       <th>bp_mingap</th>
@@ -201,21 +202,22 @@ of the DFI curve (i.e. when block length <code>n</code> for separation is betwee
     </tr>
     <tr>
       <th>plotting</th>
-      <td><p>logical, if <code>TRUE</code> the DFI curve and piecewise linear segments are plotted with <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code></p></td>
+      <td><p>logical, if <code>TRUE</code> the DFI curve, piecewise linear segments and the breakpoints
+are plotted with <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code> whit DFI curve in blue and linear segments in red.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Returns a list.</p>
-<dt>breakpoints</dt><dd><p>estimates for the n breakpoints with names <code>bp_x</code></p></dd>
-<dt>bias</dt><dd><p>value of the objective function
+    <p>Returns a list with 3 elements.</p>
+<dt>breakpoints</dt><dd><p>estimates for the n breakpoints with names <code>bp_n</code></p></dd>
+<dt>bias</dt><dd><p>value of the objective function, default:
 <code>OF = 1/2 RMSE + 1/2 MAE</code>,
 where OF is to be minimized.</p></dd>
 <dt>rel_contr</dt><dd><p>Relative streamflow contributions between <code>bp_min</code>, the breakpoints and <code>bp_max</code>,
 e.g. 2 breakpoints lead to 3 relative contributions, 3 breakpoints lead to 4 relative contributions.
-The first <code>rel_contr</code>-avlue is the fastest contribution to streamflow, the last <code>rel_contr</code>-value
-is the slowest contribution to streamflow.</p></dd>
+The first <code>rel_contr</code>-value is the fastest contribution to streamflow, the last <code>rel_contr</code>-value
+is the slowest contribution to streamflow. All contributions add up to 1.</p></dd>
 
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 

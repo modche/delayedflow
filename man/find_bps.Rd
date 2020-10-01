@@ -20,7 +20,8 @@ find_bps(
 \arguments{
 \item{dfi}{numeric, a vector with the DFI values between 1 and 0, dummy data \link{dfi_example} can be used.}
 
-\item{n_bp}{numeric, How many breakpoints (1, 2, 3) should be estimated (default = 2)?}
+\item{n_bp}{numeric, How many breakpoints (1, 2, 3) should be estimated (default = 2)? If \code{n_bp = 3}
+calculation time could be longer if also \code{nmax} is high. \code{nmax} could be estimated with \link{find_nmax}.}
 
 \item{bp_mingap}{numeric, smallest interval between two breakpoints (default = 5).}
 
@@ -40,23 +41,24 @@ of the DFI curve (i.e. when block length \code{n} for separation is between 1 an
 
 \item{print}{logical, if \code{TRUE} best breakpoint estimates during calculation are printed (debug mode)}
 
-\item{plotting}{logical, if \code{TRUE} the DFI curve and piecewise linear segments are plotted with \code{plot()}}
+\item{plotting}{logical, if \code{TRUE} the DFI curve, piecewise linear segments and the breakpoints
+are plotted with \code{plot()} whit DFI curve in blue and linear segments in red.}
 }
 \value{
-Returns a list.
-\item{breakpoints}{estimates for the n breakpoints with names \code{bp_x}}
-\item{bias}{value of the objective function
+Returns a list with 3 elements.
+\item{breakpoints}{estimates for the n breakpoints with names \code{bp_n}}
+\item{bias}{value of the objective function, default:
 \verb{OF = 1/2 RMSE + 1/2 MAE},
 where OF is to be minimized.}
 \item{rel_contr}{Relative streamflow contributions between \code{bp_min}, the breakpoints and \code{bp_max},
 e.g. 2 breakpoints lead to 3 relative contributions, 3 breakpoints lead to 4 relative contributions.
-The first \code{rel_contr}-avlue is the fastest contribution to streamflow, the last \code{rel_contr}-value
-is the slowest contribution to streamflow.}
+The first \code{rel_contr}-value is the fastest contribution to streamflow, the last \code{rel_contr}-value
+is the slowest contribution to streamflow. All contributions add up to 1.}
 }
 \description{
 Estimates n breakpoints in the DFI curve.
 DFI values are compared against n+1 piecewise linear segments and the minimization of the
-corresponding residuals. Several parameters can be customized.
+residuals (between linear segments and DFI curve). Several parameters can be customized.
 If \code{q_obs} is given in daily temporal resolution then also \code{n} can be interpreted as delay in days
 for different contributions (default).
 }

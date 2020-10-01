@@ -11,5 +11,5 @@
 #' data(dfi_example)
 #' dfi_example
 #'
-#' find_bps(dfi = dfi_example, n_bp = 1, plotting = TRUE)
+#' find_bps(dfi = dfi_example, n_bp = 2, plotting = TRUE)
 "dfi_example"
