@@ -82,7 +82,7 @@
 
       
 
-      </header><script src="tidy_streamflow_contr_files/header-attrs-2.3/header-attrs.js"></script><div class="row">
+      </header><script src="tidy_streamflow_contr_files/header-attrs-2.4/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>02 - Delayedflow Analysis in R tidyverse</h1>
@@ -97,18 +97,26 @@
 
     
     
-<p>This is a quick example how to use the delayedflow package in a R tidyverse environment.</p>
+<p>This is a quick example how to use the <code>delayedflow</code> package in a R tidyverse environment:</p>
+<ul>
+<li>here we using <code>tidyverse</code> syntax</li>
+<li>the 4 catchments coming from different streamflow regimes in Switzerland (rain, hybrid, snow)</li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="kw">modche</span><span class="op">/</span><span class="kw">delayedflow</span>)
+</pre></div>
 <div id="load-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#load-data" class="anchor"></a>Load data</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit">
+<div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="kw">df</span> <span class="op">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">'https://raw.githubusercontent.com/modche/science_contr/master/4ezg.txt'</span>, col_types = <span class="fu">cols</span>())
 </pre></div>
 </div>
 <div id="cdc-calculation-and-plotting" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cdc-calculation-and-plotting" class="anchor"></a>CDC: Calculation and plotting</h2>
-<div class="sourceCode" id="cb2"><pre class="downlit">
+<p>First of all, CDCs for all catchments are generated. For this a delayed flow separation is performed for all block length between 1 and 180. The plot highlights the differences of the CDCs of four catchments.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="kw">df</span> <span class="op">%&gt;%</span> 
     <span class="fu">group_by</span>(<span class="kw">filename</span>) <span class="op">%&gt;%</span> 
     <span class="fu">summarise</span>(cdc = <span class="fu"><a href="../reference/dfi_n.html">dfi_n</a></span>(q = <span class="kw">q</span>, n = <span class="fl">1</span><span class="op">:</span><span class="fl">180</span>)<span class="op">$</span><span class="kw">dfi</span>, .groups = <span class="st">"keep"</span>, n = <span class="fl">0</span><span class="op">:</span><span class="fl">180</span> ) <span class="op">%&gt;%</span> 
@@ -124,12 +132,12 @@
              x = <span class="st">"Block length N (days)"</span>, y = <span class="st">"DFI (-)"</span>)<span class="op">+</span>
         <span class="fu">theme</span>(legend.position = <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.80</span>, <span class="fl">0.70</span>))
 </pre></div>
-<p><img src="tidy_streamflow_contr_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<p><img src="tidy_streamflow_contr_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 </div>
 <div id="breakpoint-estaimates" class="section level2">
 <h2 class="hasAnchor">
 <a href="#breakpoint-estaimates" class="anchor"></a>Breakpoint estaimates</h2>
-<div class="sourceCode" id="cb3"><pre class="downlit">
+<div class="sourceCode" id="cb4"><pre class="downlit">
 <span class="kw">df2</span> <span class="op">&lt;-</span> <span class="kw">df</span> <span class="op">%&gt;%</span> 
     <span class="fu">group_by</span>(<span class="kw">filename</span>) <span class="op">%&gt;%</span> 
     <span class="fu">summarise</span>(cdc = <span class="fu"><a href="../reference/dfi_n.html">dfi_n</a></span>(q = <span class="kw">q</span>, n = <span class="fl">1</span><span class="op">:</span><span class="fl">180</span>)<span class="op">$</span><span class="kw">dfi</span>, .groups = <span class="st">"keep"</span>, n = <span class="fl">0</span><span class="op">:</span><span class="fl">180</span> ) <span class="op">%&gt;%</span> 
@@ -151,7 +159,7 @@
 ##  9 catchment1 0.727     8
 ## 10 catchment1 0.718     9
 ## # … with 714 more rows</code></pre>
-<div class="sourceCode" id="cb5"><pre class="downlit">
+<div class="sourceCode" id="cb6"><pre class="downlit">
 <span class="kw">bp_df</span> <span class="op">&lt;-</span> <span class="kw">df2</span> <span class="op">%&gt;%</span> 
         <span class="fu">group_by</span>(<span class="kw">filename</span>) <span class="op">%&gt;%</span> 
         <span class="fu">summarize</span>(bps = <span class="fu"><a href="../reference/find_bps.html">find_bps</a></span>(<span class="kw">cdc</span>, n_bp = <span class="fl">3</span>, bp_max = <span class="fl">65</span>)<span class="op">$</span><span class="kw">bps_position</span>) <span class="op">%&gt;%</span> 
@@ -171,7 +179,7 @@
 ## Calculating breakpoints . . . 
 ##  0%  20 %  40 %  60 %  80 %  100 %  
 ## Breakpoints ready . . .</code></pre>
-<div class="sourceCode" id="cb7"><pre class="downlit">
+<div class="sourceCode" id="cb8"><pre class="downlit">
 <span class="kw">bp_df</span>
 </pre></div>
 <pre><code>## # A tibble: 4 x 4
@@ -181,6 +189,36 @@
 ## 2 catchment2     2    11    47
 ## 3 catchment3     3    16    61
 ## 4 catchment4     2     8    30</code></pre>
+<table class="table">
+<caption>Breakpoint estimates</caption>
+<thead><tr class="header">
+<th>Col1</th>
+<th>Breakpoint 1</th>
+<th>Breakpoint 2</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>catchment1</td>
+<td>1</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>catchment1</td>
+<td>2</td>
+<td>13</td>
+</tr>
+<tr class="odd">
+<td>catchment1</td>
+<td>3</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>catchment1</td>
+<td>4</td>
+<td>14</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="relativ-streamflow-contributions" class="section level2">
 <h2 class="hasAnchor">
@@ -220,7 +258,7 @@
 <div id="plotting-rel--contributions-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#plotting-rel--contributions-" class="anchor"></a>Plotting rel. Contributions.</h2>
-<div class="sourceCode" id="cb11"><pre class="downlit">
+<div class="sourceCode" id="cb12"><pre class="downlit">
 <span class="fu">ggplot</span>(data = <span class="kw">contr_df</span>) <span class="op">+</span> 
     <span class="fu">geom_col</span>(<span class="fu">aes</span>(x = <span class="kw">rel_contr</span>, y = <span class="kw">filename</span>, fill = <span class="kw">class</span>), 
                     width = <span class="fl">0.50</span>, 
@@ -237,7 +275,7 @@
      caption = <span class="st">""</span>, 
      x = <span class="st">"\nRelative contribution to streamflow"</span>, y = <span class="st">""</span>)
 </pre></div>
-<p><img src="tidy_streamflow_contr_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="tidy_streamflow_contr_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 </div>
 <div id="explanation" class="section level2">
 <h2 class="hasAnchor">

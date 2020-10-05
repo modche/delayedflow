@@ -3,8 +3,8 @@ title: "02 - Delayedflow Analysis in R tidyverse"
 author: "Michael Stölzle"
 date: "9/25/2020"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 editor_options:
   chunk_output_type: console
 ---
@@ -16,8 +16,14 @@ library(delayedflow)
 options(dplyr.summarise.inform=F)
 ```
 
-This is a quick example how to use the delayedflow package in a R tidyverse environment.
+This is a quick example how to use the `delayedflow` package in a R tidyverse environment:
 
+-   here we using `tidyverse` syntax
+-   the 4 catchments coming from different streamflow regimes in Switzerland (rain, hybrid, snow)
+
+```{r eval=FALSE}
+devtools::install_github(modche/delayedflow)
+```
 
 ## Load data
 
@@ -25,8 +31,9 @@ This is a quick example how to use the delayedflow package in a R tidyverse envi
 df <- read_tsv('https://raw.githubusercontent.com/modche/science_contr/master/4ezg.txt', col_types = cols())
 ```
 
-
 ## CDC: Calculation and plotting
+
+First of all, CDCs for all catchments are generated. For this a delayed flow separation is performed for all block length between 1 and 180. The plot highlights the differences of the CDCs of four catchments.
 
 ```{r}
 df %>% 
@@ -67,6 +74,15 @@ bp_df <- df2 %>%
 bp_df
 ```
 
+| Col1       | Breakpoint 1 | Breakpoint 2 |
+|------------|--------------|--------------|
+| catchment1 | 1            | 12           |
+| catchment1 | 2            | 13           |
+| catchment1 | 3            | 13           |
+| catchment1 | 4            | 14           |
+
+: Breakpoint estimates
+
 ## Relativ streamflow contributions
 
 ```{r, echo = FALSE}
@@ -89,6 +105,7 @@ contr_df_long <- contr_df %>%
 ```
 
 ## Plotting rel. Contributions.
+
 ```{r, eval = TRUE}
 ggplot(data = contr_df) + 
 	geom_col(aes(x = rel_contr, y = filename, fill = class), 
@@ -107,8 +124,6 @@ ggplot(data = contr_df) +
      x = "\nRelative contribution to streamflow", y = "")
 ```
 
-
-
 ## Explanation
 
-In this example Catchment #1 has a high proportion of intermediate contributions (i.e. here snow melt from a high alpine catchment). Catchment #2 has > 50% baseline contributions that means it is highly groundwater-dominated. Comparing Catchment #4 vs. Catchment #3 the first one has more short-delayed contributions also visible in the rapid drop in the CDC curve above.
+In this example Catchment \#1 has a high proportion of intermediate contributions (i.e. here snow melt from a high alpine catchment). Catchment \#2 has \> 50% baseline contributions that means it is highly groundwater-dominated. Comparing Catchment \#4 vs. Catchment \#3 the first one has more short-delayed contributions also visible in the rapid drop in the CDC curve above.
