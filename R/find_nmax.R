@@ -46,8 +46,11 @@ find_nmax <- function(df, n = 1:180, desc = TRUE, lowflow_index = c("mam_mq")){
 	df$q7    <- stats::filter(df$q, rep(1 / 7, 7), sides = 1)
 
 	if (lowflow_index == "mam_mq"){
-		mam <- mean(tapply(df$q7, df$year, FUN = min, na.rm = TRUE))
-		mq  <- mean(tapply(df$q7, df$year, FUN = mean, na.rm = TRUE))
+		nq <- tapply(df$q7, df$year, FUN = min, na.rm = TRUE)
+		nq[is.infinite(nq)] <- NA # to cope with NA-years 2020-11-12
+		mam < mean(nq, na.rm=T)
+
+		mq <- mean(df$q7, na.rm=T)
 		index  <- mam/mq
 	}
 	if (lowflow_index == "q95_q50"){

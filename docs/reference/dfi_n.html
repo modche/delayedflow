@@ -145,7 +145,7 @@ Note, separation with <code>n=0</code> is not possible. The DFI of <code>n=1</co
 streamflow peaks are separated from delayed flow.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dfi_n</span>(<span class='kw'>q</span>, n = <span class='fl'>5</span>, desc = <span class='fl'>TRUE</span>, add_zero = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>dfi_n</span><span class='op'>(</span><span class='va'>q</span>, n <span class='op'>=</span> <span class='fl'>5</span>, desc <span class='op'>=</span> <span class='cn'>TRUE</span>, add_zero <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,11 +180,11 @@ If <code>n</code> is a single integer the function returns a single integer (i.e
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># same as BFI calculation</span>
-<span class='kw'>bfi</span> <span class='op'>&lt;-</span> <span class='fu'>dfi_n</span>(<span class='kw'>q_data</span><span class='op'>$</span><span class='kw'>q_obs</span>, n = <span class='fl'>5</span>)
-<span class='kw'>bfi</span>
+<span class='va'>bfi</span> <span class='op'>&lt;-</span> <span class='fu'>dfi_n</span><span class='op'>(</span><span class='va'>q_data</span><span class='op'>$</span><span class='va'>q_obs</span>, n <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+<span class='va'>bfi</span>
 </div><div class='output co'>#&gt; [1] 0.5194072</div><div class='input'>
 <span class='co'># 60 different separations based on various block length n</span>
-<span class='fu'>dfi_n</span>(<span class='kw'>q_data</span><span class='op'>$</span><span class='kw'>q_obs</span>, n = <span class='fl'>1</span><span class='op'>:</span><span class='fl'>60</span>)
+<span class='fu'>dfi_n</span><span class='op'>(</span><span class='va'>q_data</span><span class='op'>$</span><span class='va'>q_obs</span>, n <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>60</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     n       dfi
 #&gt; 1   0 1.0000000
 #&gt; 2   1 0.7898710
@@ -248,7 +248,7 @@ If <code>n</code> is a single integer the function returns a single integer (i.e
 #&gt; 60 59 0.1211372
 #&gt; 61 60 0.1211372</div><div class='input'>
 <span class='co'># only specific block lengths are used</span>
-<span class='fu'>dfi_n</span>(<span class='kw'>q_data</span><span class='op'>$</span><span class='kw'>q_obs</span>, n = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>30</span>,<span class='fl'>60</span>,<span class='fl'>90</span>), add_zero = <span class='fl'>FALSE</span>)
+<span class='fu'>dfi_n</span><span class='op'>(</span><span class='va'>q_data</span><span class='op'>$</span><span class='va'>q_obs</span>, n <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,<span class='fl'>10</span>,<span class='fl'>30</span>,<span class='fl'>60</span>,<span class='fl'>90</span><span class='op'>)</span>, add_zero <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;    n        dfi
 #&gt; 1  1 0.78987096
 #&gt; 2  2 0.66373472
