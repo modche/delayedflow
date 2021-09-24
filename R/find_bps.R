@@ -9,6 +9,7 @@
 #' @param dfi numeric, a vector with the DFI values between 1 and 0, dummy data [dfi_example] can be used.
 #' @param n_bp numeric, How many breakpoints (1, 2, 3) should be estimated (default = 2)? If \code{n_bp = 3}
 #'     calculation time could be longer if also \code{nmax} is high. \code{nmax} could be estimated with [find_nmax].
+#'     For testing also \code{n_bp = 4} is possible See \code{experimental} setting.
 #' @param bp_mingap numeric, smallest interval between two breakpoints (default = 5).
 #' @param bp_min numeric, `bp_min`+1 is minimum allowed breakpoint position (default = 0).
 #' @param bp_max numeric, `bp_max`-1 is maximum allowed breakpoint position.
@@ -22,6 +23,7 @@
 #' @param print logical, if `TRUE` best breakpoint estimates during calculation are printed (debug mode)
 #' @param plotting logical, if `TRUE` the DFI curve, piecewise linear segments and the breakpoints
 #'      are plotted with \code{plot()} whit DFI curve in blue and linear segments in red.
+#' @param experimental logical, if `TRUE` four breakpoints can be estimated.
 #'
 #' @return Returns a list with 3 elements.
 #' \item{breakpoints}{estimates for the n breakpoints with names `bp_n`}
@@ -36,7 +38,7 @@
 #' @export
 #' @examples
 #' # use dfi_example as an DFI vector with 121 values
-#' find_bps(dfi_example, n_bp = 2, bp_max = 90, plotting = TRUE)
+#' find_bps(dfi_example, n_bp = 3, bp_max = 90, plotting = TRUE)
 find_bps <- function(dfi,
 					n_bp = 2,
 					bp_mingap = 5,
@@ -46,7 +48,8 @@ find_bps <- function(dfi,
 					of_weights = c(0.5, 0.5),
 					desc = TRUE,
 					print = FALSE,
-					plotting = FALSE) {
+					plotting = FALSE,
+					experimental = FALSE) {
 
 	if(length(nmax) != 1 | nmax > length(dfi)) {
 		stop(paste0("nmax must be integer number and/or smaller than ", length(dfi),"."))
@@ -77,8 +80,12 @@ find_bps <- function(dfi,
 	if(bp_mingap <= 2) {
 		stop("\"min_gap\" is too small, should be 3 or larger.")
 	}
-	if(!n_bp %in% 1:3) {
-		stop("Number of breakpoints must be 1,2 or 3")
+	if(!n_bp %in% 1:4) {
+		stop("Number of breakpoints must be 1,2,3 or 4 (experimental)")
+	}
+
+	if(n_bp == 4 & !experimental) {
+		stop("Number of breakpoints = 4, please set experimental = TRUE")
 	}
 
 	if(sum(of_weights) != 1) {
@@ -110,10 +117,21 @@ find_bps <- function(dfi,
 	bp_grid <- as.matrix(bp_grid, rownames.force = FALSE)
 	}
 
+	if (n_bp == 4) {
+		bp_grid <- subset(bp_grid, (bp_1 < bp_2 &
+										bp_1 + bp_mingap <= bp_2 &
+										bp_2 < bp_3 &
+										bp_2 + bp_mingap <= bp_3 &
+										bp_3 < bp_4 &
+										bp_3 + bp_mingap <= bp_4 ))
+		bp_grid <- as.matrix(bp_grid, rownames.force = FALSE)
+	}
+
+
 	# fit breakpoint model
 	dummy <- 999
 	best_bps <- NULL
-	cat("Calculating breakpoints . . . \n 0%  ")
+	cat("Calculating breakpoints...")
 	for (i in 1:nrow(bp_grid)) {
 
 		bps <- bp_grid[i,]
@@ -126,10 +144,10 @@ find_bps <- function(dfi,
 			result <- list(bps_position = bps, bias = dummy )
 		}
 
-        if(i %in% floor(nrow(bp_grid) * 1:5/5)) cat(paste0(round(i/nrow(bp_grid)*100,0)),"%  ")
+        #if(i %in% floor(nrow(bp_grid) * 1:5/5)) cat(paste0(round(i/nrow(bp_grid)*100,0)),"%  ")
 
 	}
-	cat("\nBreakpoints ready . . . \n")
+	cat("Done. \n\n")
 
 result$rel_contr <- -diff(c(dfi[c(1, result$bps_position+1)], 0))
 names(result$rel_contr) <- c(paste0("contr_", 1:length(result$rel_contr)))

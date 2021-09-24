@@ -76,7 +76,7 @@ for different contributions (default)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">delayedflow</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.11</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.20</span>
       </span>
     </div>
 
@@ -84,7 +84,7 @@ for different contributions (default)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -113,7 +113,7 @@ for different contributions (default)." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/modche/delayedflow/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -153,7 +153,8 @@ for different contributions (default).</p>
   of_weights <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5</span>, <span class='fl'>0.5</span><span class='op'>)</span>,
   desc <span class='op'>=</span> <span class='cn'>TRUE</span>,
   print <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  plotting <span class='op'>=</span> <span class='cn'>FALSE</span>
+  plotting <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  experimental <span class='op'>=</span> <span class='cn'>FALSE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -166,7 +167,8 @@ for different contributions (default).</p>
     <tr>
       <th>n_bp</th>
       <td><p>numeric, How many breakpoints (1, 2, 3) should be estimated (default = 2)? If <code>n_bp = 3</code>
-calculation time could be longer if also <code>nmax</code> is high. <code>nmax</code> could be estimated with <a href='find_nmax.html'>find_nmax</a>.</p></td>
+calculation time could be longer if also <code>nmax</code> is high. <code>nmax</code> could be estimated with <a href='find_nmax.html'>find_nmax</a>.
+For testing also <code>n_bp = 4</code> is possible See <code>experimental</code> setting.</p></td>
     </tr>
     <tr>
       <th>bp_mingap</th>
@@ -205,6 +207,10 @@ of the DFI curve (i.e. when block length <code>n</code> for separation is betwee
       <td><p>logical, if <code>TRUE</code> the DFI curve, piecewise linear segments and the breakpoints
 are plotted with <code><a href='https://rdrr.io/r/graphics/plot.default.html'>plot()</a></code> whit DFI curve in blue and linear segments in red.</p></td>
     </tr>
+    <tr>
+      <th>experimental</th>
+      <td><p>logical, if <code>TRUE</code> four breakpoints can be estimated.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -226,9 +232,8 @@ is the slowest contribution to streamflow. All contributions add up to 1.</p></d
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># use dfi_example as an DFI vector with 121 values</span>
 <span class='fu'>find_bps</span><span class='op'>(</span><span class='va'>dfi_example</span>, n_bp <span class='op'>=</span> <span class='fl'>2</span>, bp_max <span class='op'>=</span> <span class='fl'>90</span>, plotting <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Calculating breakpoints . . . 
-#&gt;  0%  20 %  40 %  60 %  80 %  100 %  
-#&gt; Breakpoints ready . . . </div><div class='img'><img src='find_bps-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $bps_position
+</div><div class='output co'>#&gt; Calculating breakpoints...Done. 
+#&gt; </div><div class='img'><img src='find_bps-1.png' alt='' width='700' height='433' /></div><div class='output co'>#&gt; $bps_position
 #&gt; bp_1 bp_2 
 #&gt;    8   60 
 #&gt; 

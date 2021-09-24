@@ -14,14 +14,16 @@ find_bps(
   of_weights = c(0.5, 0.5),
   desc = TRUE,
   print = FALSE,
-  plotting = FALSE
+  plotting = FALSE,
+  experimental = FALSE
 )
 }
 \arguments{
 \item{dfi}{numeric, a vector with the DFI values between 1 and 0, dummy data \link{dfi_example} can be used.}
 
 \item{n_bp}{numeric, How many breakpoints (1, 2, 3) should be estimated (default = 2)? If \code{n_bp = 3}
-calculation time could be longer if also \code{nmax} is high. \code{nmax} could be estimated with \link{find_nmax}.}
+calculation time could be longer if also \code{nmax} is high. \code{nmax} could be estimated with \link{find_nmax}.
+For testing also \code{n_bp = 4} is possible See \code{experimental} setting.}
 
 \item{bp_mingap}{numeric, smallest interval between two breakpoints (default = 5).}
 
@@ -43,6 +45,8 @@ of the DFI curve (i.e. when block length \code{n} for separation is between 1 an
 
 \item{plotting}{logical, if \code{TRUE} the DFI curve, piecewise linear segments and the breakpoints
 are plotted with \code{plot()} whit DFI curve in blue and linear segments in red.}
+
+\item{experimental}{logical, if \code{TRUE} four breakpoints can be estimated.}
 }
 \value{
 Returns a list with 3 elements.

@@ -1,13 +1,13 @@
 Package: delayedflow
-Title: Delayed flow separation for streaflow data
-Version: 0.11
+Title: Delayed flow separation for streamflow data
+Version: 0.20
 Authors@R: 
     person(given = "Michael",
            family = "Stoelzle",
            role = c("aut", "cre"),
            email = "michael.stoelzle@hydro.uni-freiburg.de",
            comment = c(ORCID = "0000-0003-0021-4351"))
-Description: Delayed flow separation (DFS) is an extentions of baseflow separation where 
+Description: Delayed flow separation (DFS) is an extention of baseflow separation where 
     hydrographs are separated in quick- and baseflow. DFS deconvolute the hydrograph
     into multiple delayed streamflow contributions.
 License: MIT
@@ -16,7 +16,7 @@ LazyData: true
 URL: https://github.com/modche/delayedflow
 BugReports: https://github.com/modche/delayedflow/issues
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Depends: 
     R (>= 3.5.0)
 Suggests:
