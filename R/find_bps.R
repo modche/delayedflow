@@ -19,7 +19,7 @@
 #'     Default is c(0.5, 0.5), i.e. equal weights. Sum of vector must be 1. To switch of one measure use
 #'     \code{c(1, 0)} or \code{c(0,1)}. With the weighting more or less focus could be given to the upper parts
 #'     of the DFI curve (i.e. when block length \code{n} for separation is between 1 and 10).
-#' @param desc logical, if `TRUE` DFI values are converted to be monotonically decreasing with [cummin()]
+#' @param desc logical, if `TRUE` (recommended) DFI values are converted to be monotonically decreasing with [cummin()]
 #' @param print logical, if `TRUE` best breakpoint estimates during calculation are printed (debug mode)
 #' @param plotting logical, if `TRUE` the DFI curve, piecewise linear segments and the breakpoints
 #'      are plotted with \code{plot()} whit DFI curve in blue and linear segments in red.
