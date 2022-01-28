@@ -1,5 +1,6 @@
 # delayedflow
 
+Package website https://modche.github.io/delayedflow/
 
 Understanding components of the total streamflow is important to assess the ecological functioning of rivers. Here hydrologists asks how much water comes from different sources like snow melt, groundwater, lakes and sustains streamflow.
 
