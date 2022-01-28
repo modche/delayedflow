@@ -13,7 +13,8 @@
 - change many parameter names to more meaningful terms (e.g. `bp_mingap`).
 - `mam_mq` as delaut low flow index, only one index output is now possible.
 
-### delayedflow 0.20 (2021)
+### delayedflow 0.20 (2021-2022)
 
 - now up to 4 breakpoints can be estimated in `find_bps()`
 - smaller corrections of typos and adjusted outputs
+- Using pgkdown 2.0 as website now.
