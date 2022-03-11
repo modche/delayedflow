@@ -1,6 +1,6 @@
 Package: delayedflow
-Title: Delayed flow separation for streamflow data
-Version: 0.20
+Title: Delayed-flow separation for streamflow data
+Version: 0.21
 Authors@R: 
     person(given = "Michael",
            family = "Stoelzle",
