@@ -2,15 +2,15 @@
 
 Package website https://modche.github.io/delayedflow/
 
-### 1. Introduction
+### 1. Hydrological background
 
-The `delayedflow` package in R is developed to make it quick and easy to perform a delayed flow separation on the basis of streamflow (discharge) date only. The package is based on the publication from  [Stoelzle et al. (2020)](https://hess.copernicus.org/articles/24/849/2020/) where common binary baseflow separation into quick- and baseflow is advanced by the DFI (Delayed Flow Index) to quantify multiple delayed contributions to streamflow.
+The `delayedflow` package in R is developed to perform a delayed-flow separation using streamflow data only. Commonly daily data is used. The package is based on the publication from  [Stoelzle et al. (2020)](https://hess.copernicus.org/articles/24/849/2020/) where common binary baseflow separation into quick- and baseflow is advanced by the DFI (Delayed Flow Index) to quantify multiple delayed contributions to streamflow. Normally 3-4 delayed contributions are separated by this method.
 
 Specifically, the R package performs:
 
  - DFI separations with variable block length N (baseflow separation has fixed N = 5 days)
- - Estimation of breakpoint(s)
- - Quantification of relative streamflow contributions in different delay classes
+ - Estimation of n breakpoint(s)
+ - Quantification of relative streamflow contributions [0,1] in different delay classes
  - Couple of minor analyses
 
 ### 2. Package installation
@@ -26,6 +26,8 @@ devtools::install_github("modche/delayedflow")
 ### 3. Vignette / Manual
 
 [Website with package documentation](https://modche.github.io/delayedflow/)
+
+Some example workflows are given in the Articles section.
 
 ```{R}
 # ----- get help in R after installation  -----
