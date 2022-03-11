@@ -17,4 +17,7 @@
 
 - now up to 4 breakpoints can be estimated in `find_bps()`
 - smaller corrections of typos and adjusted outputs
-- Using pgkdown 2.0 as website now.
+
+### delayedflow 0.21 (2022-03-11)
+- typos
+- using pgkdown 2.0.x for website.

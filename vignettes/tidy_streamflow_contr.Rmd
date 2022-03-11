@@ -104,7 +104,7 @@ contr_df_long <- contr_df %>%
 	 # 					 labels = c("baseline", "intermediate_2", "intermediate_1", "short"))
 ```
 
-## Plotting rel. Contributions.
+## Plot relative contributions
 
 ```{r, eval = TRUE}
 ggplot(data = contr_df) + 
@@ -124,6 +124,6 @@ ggplot(data = contr_df) +
      x = "\nRelative contribution to streamflow", y = "")
 ```
 
-## Explanation
+## Interpretation of the results
 
 In this example Catchment \#1 has a high proportion of intermediate contributions (i.e. here snow melt from a high alpine catchment). Catchment \#2 has \> 50% baseline contributions that means it is highly groundwater-dominated. Comparing Catchment \#4 vs. Catchment \#3 the first one has more short-delayed contributions also visible in the rapid drop in the CDC curve above.

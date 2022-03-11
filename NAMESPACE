@@ -7,3 +7,7 @@ export(find_nmax)
 export(mae)
 export(rmse)
 export(which.min.na)
+
+importFrom("graphics", "grid", "points", "segments")
+importFrom("stats", "approx", "quantile")
+importFrom("utils", "head", "tail")

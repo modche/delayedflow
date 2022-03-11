@@ -96,13 +96,13 @@ find_bps <- function(dfi,
 		dfi <- cummin(dfi)
 	}
 
-	# breakpoint grid
+# breakpoint grid
 	len <- length(dfi)
 	pot_bp <- (bp_min+1):(bp_max-1)
 	bp_grid <- expand.grid(rep(list(pot_bp),n_bp))
 	names(bp_grid) <- paste0("bp_",1:n_bp)
 
-	# create breakpoint combinations
+# create breakpoint combinations
 	if (n_bp == 1) bp_grid <- as.matrix(pot_bp)
 
 	if (n_bp == 2) {

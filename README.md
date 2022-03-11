@@ -1,13 +1,6 @@
-# delayedflow
+# delayedflow package for R
 
 Package website https://modche.github.io/delayedflow/
-
-Understanding components of the total streamflow is important to assess the ecological functioning of rivers. Here hydrologists asks how much water comes from different sources like snow melt, groundwater, lakes and sustains streamflow.
-
-Binary or two-component separation of streamflow into a quick and a slow (often referred to as baseflow) component are often based on arbitrary choices of separation parameters and also merge different delayed components into one baseflow component (e.g. snow melt and groundwater contribution). As streamflow generation during dry weather often results from drainage of multiple sources, it is proposed to extend the BFI by a delayed-flow index (DFI) considering the dynamics of multiple delayed contributions to streamflow. 
-
-The DFI is based on characteristic delay curves (CDCs) where the identification of breakpoint (BP) estimates helps to avoid rather subjective separation parameters and allows for distinguishing four types of delayed streamflow contributions.
-
 
 ### 1. Introduction
 
