@@ -54,7 +54,7 @@ df %>%
 	 
 ```
 
-## Breakpoint estaimates
+## Breakpoint estimates
 
 The breakpoints are the heart of the DFI analysis. For n breakpoints n+1 delayed (relative) contributions (sum = 1) can be estimated.
 
