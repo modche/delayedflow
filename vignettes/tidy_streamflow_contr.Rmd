@@ -22,7 +22,8 @@ This is a quick example how to use the `delayedflow` package in a R tidyverse en
 -   the 4 catchments coming from different streamflow regimes in Switzerland (rain, hybrid, snow)
 
 ```{r eval=FALSE}
-devtools::install_github(modche/delayedflow)
+#devtools::install_github(modche/delayedflow)
+library(delayedflow) #load package
 ```
 
 ## Load data
@@ -35,7 +36,7 @@ df <- read_tsv('https://raw.githubusercontent.com/modche/science_contr/master/4e
 
 First of all, CDCs for all catchments are generated. For this a delayed flow separation is performed for all block length between 1 and 180. The plot highlights the differences of the CDCs of four catchments.
 
-```{r}
+```{r, fig.height=6}
 df %>% 
 	group_by(filename) %>% 
 	summarise(cdc = dfi_n(q = q, n = 1:180)$dfi, .groups = "keep", n = 0:180 ) %>% 
@@ -44,7 +45,7 @@ df %>%
 		geom_line(aes(colour = filename)) +
 		scale_x_continuous(breaks = c(0:6 * 30)) +
 		theme_bw(14) +
-		labs(title = "Delayed Flow Analysis for 4 catchments",
+		labs(title = "",
 		     subtitle = "",
 		     caption = "", 
 			 colour = "CDCs",
@@ -54,6 +55,8 @@ df %>%
 ```
 
 ## Breakpoint estaimates
+
+The breakpoints are the heart of the DFI analysis. For n breakpoints n+1 delayed (relative) contributions (sum = 1) can be estimated.
 
 ```{r, eval = TRUE}
 df2 <- df %>% 
@@ -70,20 +73,16 @@ bp_df <- df2 %>%
 		mutate(id = names(bps)) %>% 
 		ungroup() %>% 
 		pivot_wider(names_from = "id", values_from = "bps")
+```
 
+Let's have a look on the different breakpoints (in days) across the catchments.
+
+```{r, eval = TRUE}
 bp_df
 ```
 
-| Col1       | Breakpoint 1 | Breakpoint 2 |
-|------------|--------------|--------------|
-| catchment1 | 1            | 12           |
-| catchment1 | 2            | 13           |
-| catchment1 | 3            | 13           |
-| catchment1 | 4            | 14           |
 
-: Breakpoint estimates
-
-## Relativ streamflow contributions
+## Relative streamflow contributions
 
 ```{r, echo = FALSE}
 contr_df <- df2 %>% 
@@ -105,6 +104,8 @@ contr_df_long <- contr_df %>%
 ```
 
 ## Plot relative contributions
+
+Each `contr` can vary beetween 0 and 1. All `contr`s together add up to 1.
 
 ```{r, eval = TRUE}
 ggplot(data = contr_df) + 
